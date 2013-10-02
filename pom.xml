@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wcinformatics</groupId>
+    <artifactId>snomed-db-scripts</artifactId>
+    <version>20140131-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>SNOMED Database Load Scripts</name>
+    <url>http://www.wcinformatics.com</url>
+
+    <scm>
+        <connection>scm:svn:https://westcoastinformatics.svn.cloudforge.com/wci/snomedtools/tags/20130731</connection>
+        <developerConnection>scm:svn:https://westcoastinformatics.svn.cloudforge.com/wci/snomedtools/tags/20130731</developerConnection>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Default group is org.apache.maven.plugins. -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/zip.xml</descriptor>
+                    </descriptors>
+                    <formats>
+                        <format>zip</format>
+                    </formats>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>  <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
