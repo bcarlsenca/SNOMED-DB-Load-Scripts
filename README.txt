@@ -15,3 +15,6 @@ Key Features
 * Support for RF1 and RF2 data formats
 * Denormalization of concept/description ids for contextualized lookup
 
+Developer Notes
+---------------
+https://westcoastinformatics.ctf.cloudforge.com/sf/projects/westcoastinformaticswci/
