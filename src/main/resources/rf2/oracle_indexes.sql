@@ -13,6 +13,9 @@ PCTFREE 10 COMPUTE STATISTICS;
 CREATE INDEX x_complexmap_refercompid ON complexmap(referencedComponentId)
 PCTFREE 10 COMPUTE STATISTICS;
 
+CREATE INDEX x_extendedmap_refercompid ON extendedmap(referencedComponentId)
+PCTFREE 10 COMPUTE STATISTICS;
+
 CREATE INDEX x_simplemap_refercompid ON simplemap(referencedComponentId)
 PCTFREE 10 COMPUTE STATISTICS;
 

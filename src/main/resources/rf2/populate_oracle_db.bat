@@ -76,6 +76,11 @@ IF %ERRORLEVEL% NEQ 0 (set error=1)
 type complexmap.log >> oracle.log
 
 echo     Load content tables >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="extendedmap.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type extendedmap.log >> oracle.log
+
+echo     Load content tables >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="simplemap.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type simplemap.log >> oracle.log

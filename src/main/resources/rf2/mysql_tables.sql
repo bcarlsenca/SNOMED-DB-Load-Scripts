@@ -271,7 +271,7 @@ CREATE TABLE complexmap (
     correlationId NUMERIC(18) UNSIGNED NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
-    FOREIGN KEY (correlationId) REFERENCES concept(id)
+    FOREIGN KEY (correlationId) REFERENCES concept(id),
 ) CHARACTER SET utf8;
 
 LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_INT_${version}.txt' INTO TABLE complexmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
@@ -288,6 +288,45 @@ mapRule = @mapRule,
 mapAdvice = @mapAdvice,
 mapTarget = @mapTarget,
 correlationId = @correlationId;
+
+
+-- Extended Map refset file.
+DROP TABLE IF EXISTS extendedmap;
+CREATE TABLE extendedmap (
+    id CHAR(52) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(18) UNSIGNED NOT NULL,
+    refsetId NUMERIC(18) UNSIGNED NOT NULL,
+    referencedComponentId NUMERIC(18) UNSIGNED NOT NULL,
+    mapGroup INT UNSIGNED NOT NULL,
+    mapPriority INT UNSIGNED NOT NULL,
+    mapRule VARCHAR(4000) NOT NULL,
+    mapAdvice VARCHAR(4000) NOT NULL,
+    mapTarget VARCHAR(100) NOT NULL,
+    correlationId NUMERIC(18) UNSIGNED NOT NULL,
+    mapCategoryId NUMERIC(18) UNSIGNED NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (refsetId) REFERENCES concept(id),
+    FOREIGN KEY (correlationId) REFERENCES concept(id),
+    FOREIGN KEY (mapCategoryId) REFERENCES concept(id)
+) CHARACTER SET utf8;
+
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ExtendedMapSnapshot_INT_${version}.txt' INTO TABLE extendedmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mapGroup,@mapPriority,@mapRule,@mapAdvice,@mapTarget,@correlationId,@mapCategoryId)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+refsetId = @refsetId,
+referencedComponentId = @referencedComponentId,
+mapGroup = @mapGroup,
+mapPriority = @mapPriority,
+mapRule = @mapRule,
+mapAdvice = @mapAdvice,
+mapTarget = @mapTarget,
+correlationId = @correlationId,
+mapCategoryId = @mapCategoryId;
 
 
 -- Simple Map refset file.

@@ -250,6 +250,33 @@ AND referencedComponentId = cpn3.conceptId
 AND correlationId = cpn4.conceptId;
 
 
+-- Extended Map refset file.
+EXECUTE drop_view('extendedmapwithnames');
+CREATE VIEW extendedmapwithnames AS
+SELECT id, effectiveTime, active,
+    moduleId, cpn1.preferredName moduleIdName,
+    refsetId, cpn2.preferredName refsetIdName,
+    referencedComponentId, cpn3.preferredName referencedComponentIdName,
+    mapGroup,
+    mapPriority,
+    mapRule,
+    mapAdvice,
+    mapTarget,
+    correlationId, cpn4.preferredName correlationIdName,
+    mapCategoryId, cpn5.preferredName mapCategoryIdName 
+FROM extendedmap,
+    conceptpreferredname cpn1,
+    conceptpreferredname cpn2,
+    conceptpreferredname cpn3,
+    conceptpreferredname cpn4,
+    conceptpreferredname cpn5
+WHERE moduleId = cpn1.conceptId
+AND refsetId = cpn2.conceptId
+AND referencedComponentId = cpn3.conceptId
+AND correlationId = cpn4.conceptId
+AND mapCategoryId = cpn5.conceptId;
+
+
 -- Simple Map refset file.
 EXECUTE drop_view('simplemapwithnames');
 CREATE VIEW simplemapwithnames AS

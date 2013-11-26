@@ -38,6 +38,9 @@ LINES TERMINATED BY '\r\n';
 -- Complex Map refset file.
 
 
+-- Extended Map refset file.
+
+
 -- Simple Map refset file.
 
 
