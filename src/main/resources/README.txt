@@ -5,7 +5,7 @@ Go to the above link for documentation, and additional downloads.
 
 Important Notes
 ---------------
-* These database load scripts are configured to work with the July 31, 2013
+* These database load scripts are configured to work with the Jan 31, 2014
   SNOMEDCT International Edition.
 
 Key Features

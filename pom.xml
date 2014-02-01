@@ -9,10 +9,10 @@
     <name>SNOMED Database Load Scripts</name>
     <url>http://www.wcinformatics.com</url>
 
-    <!-- SCM - needs to be updated to .git -->
+    <!-- SCM -->
     <scm>
-        <connection>scm:svn:https://westcoastinformatics.svn.cloudforge.com/wci/snomedtools/tags/20130731</connection>
-        <developerConnection>scm:svn:https://westcoastinformatics.svn.cloudforge.com/wci/snomedtools/tags/20130731</developerConnection>
+        <connection>scm:git:git://github.com/bcarlsenca/SNOMED-DB-Load-Scripts</connection>
+        <developerConnection>scm:git:git://github.com/bcarlsenca/SNOMED-DB-Load-Scripts</developerConnection>
     </scm>
 
     <!-- Project properties -->
