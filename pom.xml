@@ -4,7 +4,7 @@
     <!-- Project description -->
     <groupId>com.wcinformatics</groupId>
     <artifactId>snomed-db-scripts</artifactId>
-    <version>20140131</version>
+    <version>20140731-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SNOMED Database Load Scripts</name>
     <url>http://www.wcinformatics.com</url>

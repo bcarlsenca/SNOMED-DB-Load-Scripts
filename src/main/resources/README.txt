@@ -1,5 +1,5 @@
 Welcome to SNOMED CT Oracle and MySQL Database Load Scripts
-http://www.wcinformatics.com/snomedtools
+http://www.wcinformatics.com/snomedtools/snomed-db-scripts.zip
 
 Go to the above link for documentation, and additional downloads.
 
