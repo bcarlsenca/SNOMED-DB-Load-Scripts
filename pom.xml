@@ -1,27 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project description -->
     <groupId>com.wcinformatics</groupId>
     <artifactId>snomed-db-scripts</artifactId>
-    <version>20140131-SNAPSHOT</version>
+    <version>20140131</version>
     <packaging>pom</packaging>
-
     <name>SNOMED Database Load Scripts</name>
     <url>http://www.wcinformatics.com</url>
 
+    <!-- SCM - needs to be updated to .git -->
     <scm>
         <connection>scm:svn:https://westcoastinformatics.svn.cloudforge.com/wci/snomedtools/tags/20130731</connection>
         <developerConnection>scm:svn:https://westcoastinformatics.svn.cloudforge.com/wci/snomedtools/tags/20130731</developerConnection>
     </scm>
 
+    <!-- Project properties -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- Build process -->
     <build>
         <plugins>
+
+            <!-- Produce .zip file -->
             <plugin>
-                <!-- Default group is org.apache.maven.plugins. -->
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
@@ -43,5 +48,8 @@
                 </executions>
             </plugin>
         </plugins>
+        
     </build>
+    
+    
 </project>
