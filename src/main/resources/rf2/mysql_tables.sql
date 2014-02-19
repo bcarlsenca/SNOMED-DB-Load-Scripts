@@ -271,7 +271,7 @@ CREATE TABLE complexmap (
     correlationId NUMERIC(18) UNSIGNED NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
-    FOREIGN KEY (correlationId) REFERENCES concept(id),
+    FOREIGN KEY (correlationId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
 LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_INT_${version}.txt' INTO TABLE complexmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
