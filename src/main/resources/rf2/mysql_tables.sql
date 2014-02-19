@@ -245,7 +245,7 @@ CREATE TABLE simple (
 ) CHARACTER SET utf8;
 
 LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_Refset_SimpleSnapshot_INT_${version}.txt' INTO TABLE simple LINES TERMINATED BY '\r\n' IGNORE 1 LINES
-(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@valueId)
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId)
 SET id = @id,
 effectiveTime = @effectiveTime,
 active = @active,
