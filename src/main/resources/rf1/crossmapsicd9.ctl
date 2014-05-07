@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Maps/ICD9/der1_CrossMaps_ICD9_INT_${version}.txt' "str X'0d0a'"
+infile 'Maps/ICD9/der1_CrossMaps_ICD9_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'Maps/ICD9/crossmapsicd9.bad'
 discardfile 'Maps/ICD9/crossmapsicd9.dsc'
 insert

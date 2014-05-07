@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Refset/Map/der2_sRefset_SimpleMapSnapshot_INT_${version}.txt' "str X'0d0a'"
+infile 'Snapshot/Refset/Map/der2_sRefset_SimpleMapSnapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'simplemap.bad'
 discardfile 'simplemap.dsc'
 insert

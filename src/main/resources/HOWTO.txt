@@ -1,25 +1,30 @@
 This HOWTO describes how to use the installer scripts to load SNOMED into a database.
 
-0.  Download the 20140131 SNOMED CT International Release files 
+0.  Download the SNOMED CT International Release files 
     in ZIP format.  US Users can find the files here:
 	• SNOMED CT® Release Files 
 	  - http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctfiles.html
 	• SNOMED CT® Archive Files 
 	  - http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctarchive.html
+   
+    Download the SNOMED CT International Release files 
+    in ZIP format.  US Users can find the files here:
+	• SNOMED CT® US Edition Release Files 
+	  - http://www.nlm.nih.gov/research/umls/Snomed/us_edition.html
 
 1.  Unzip the files into a folder 
-    (e.g. SnomedCT_Release_INT_20140131).
+    (e.g. SnomedCT_Release_${editionLabel}_${editionVersion}).
 
 2.  Unzip the installer scripts.
 
 3.  For the desired format, copy the appropriate installer scripts 
     to the release file subdirectory specified below:
-	• To install from RF1, copy the installer scripts from 
-	  20140131/RF1 and paste them into 
-	  SnomedCT_Release_INT_20140131/RF1Release.
-	• To install from RF2, copy the installer scripts from 
-	  20140131/RF2 and paste them into 
-	  SnomedCT_Release_INT_20140131/RF2Release.
+	• To install from RF1, copy the installer scripts from rf1/
+	  and paste them into 
+	  SnomedCT_Release_${editionLabel}_${editionVersion}/RF1Release.
+	• To install from RF2, copy the installer scripts from rf2/
+	  and paste them into 
+	  SnomedCT_Release_${editionLabel}_${editionVersion}/RF2Release.
 
 4.  Set the variables in the script, such as database username/
     password.

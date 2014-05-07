@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Refset/Metadata/der2_ssRefset_ModuleDependencySnapshot_INT_${version}.txt' "str X'0d0a'"
+infile 'Snapshot/Refset/Metadata/der2_ssRefset_ModuleDependencySnapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'moduledependency.bad'
 discardfile 'moduledependency.dsc'
 insert

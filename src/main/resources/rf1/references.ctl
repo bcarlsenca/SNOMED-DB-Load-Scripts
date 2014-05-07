@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Terminology/History/sct1_References_Core_INT_${version}.txt' "str X'0d0a'"
+infile 'Terminology/History/sct1_References_${editionType}_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'references.bad'
 discardfile 'references.dsc'
 insert

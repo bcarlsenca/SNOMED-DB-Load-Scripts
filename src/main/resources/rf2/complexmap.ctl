@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_INT_${version}.txt' "str X'0d0a'"
+infile 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'complexmap.bad'
 discardfile 'complexmap.dsc'
 insert

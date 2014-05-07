@@ -17,7 +17,7 @@ CREATE TABLE concept (
     FOREIGN KEY (definitionStatusId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Concept_Snapshot_INT_${version}.txt' INTO TABLE concept LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Concept_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE concept LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@definitionStatusId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -44,7 +44,7 @@ CREATE TABLE description (
     FOREIGN KEY (caseSignificanceId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Description_Snapshot-en_INT_${version}.txt' INTO TABLE description LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Description_Snapshot-en_${editionLabel}_${editionVersion}.txt' INTO TABLE description LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@conceptId,@languageCode,@typeId,@term,@caseSignificanceId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -69,7 +69,7 @@ CREATE TABLE identifier (
     FOREIGN KEY (moduleId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Identifier_Snapshot_INT_${version}.txt' INTO TABLE identifier LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Identifier_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE identifier LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@identifierSchemeId,@alternateIdentifier,@effectiveTime,@active,@moduleId,@referencedComponentId)
 SET identifierSchemeId = @identifierSchemeId,
 alternateIdentifier = @alternateIdentifier,
@@ -100,7 +100,7 @@ CREATE TABLE relationship (
     FOREIGN KEY (modifierId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Relationship_Snapshot_INT_${version}.txt' INTO TABLE relationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_Relationship_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE relationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@sourceId,@destinationId,@relationshipGroup,@typeId,@characteristicTypeId,@modifierId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -135,7 +135,7 @@ CREATE TABLE statedrelationship (
     FOREIGN KEY (modifierId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_StatedRelationship_Snapshot_INT_${version}.txt' INTO TABLE statedrelationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_StatedRelationship_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE statedrelationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@sourceId,@destinationId,@relationshipGroup,@typeId,@characteristicTypeId,@modifierId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -166,7 +166,7 @@ CREATE TABLE textdefinition (
     FOREIGN KEY (caseSignificanceId) REFERENCES concept(id) 
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_INT_${version}.txt' INTO TABLE textdefinition LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_${editionLabel}_${editionVersion}.txt' INTO TABLE textdefinition LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@conceptId,@languageCode,@typeId,@term,@caseSignificanceId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -194,7 +194,7 @@ CREATE TABLE associationreference (
     FOREIGN KEY (targetComponent) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_cRefset_AssociationReferenceSnapshot_INT_${version}.txt' INTO TABLE associationreference LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_cRefset_AssociationReferenceSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE associationreference LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@targetComponent)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -220,7 +220,7 @@ CREATE TABLE attributevalue (
     FOREIGN KEY (valueId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_cRefset_AttributeValueSnapshot_INT_${version}.txt' INTO TABLE attributevalue LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_cRefset_AttributeValueSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE attributevalue LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@valueId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -244,7 +244,7 @@ CREATE TABLE simple (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_Refset_SimpleSnapshot_INT_${version}.txt' INTO TABLE simple LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_Refset_SimpleSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE simple LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -274,7 +274,7 @@ CREATE TABLE complexmap (
     FOREIGN KEY (correlationId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_INT_${version}.txt' INTO TABLE complexmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE complexmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mapGroup,@mapPriority,@mapRule,@mapAdvice,@mapTarget,@correlationId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -312,7 +312,7 @@ CREATE TABLE extendedmap (
     FOREIGN KEY (mapCategoryId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ExtendedMapSnapshot_INT_${version}.txt' INTO TABLE extendedmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iisssccRefset_ExtendedMapSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE extendedmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mapGroup,@mapPriority,@mapRule,@mapAdvice,@mapTarget,@correlationId,@mapCategoryId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -343,7 +343,7 @@ CREATE TABLE simplemap (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_sRefset_SimpleMapSnapshot_INT_${version}.txt' INTO TABLE simplemap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_sRefset_SimpleMapSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE simplemap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mapTarget)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -369,7 +369,7 @@ CREATE TABLE language (
     FOREIGN KEY (acceptabilityId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Language/der2_cRefset_LanguageSnapshot-en_INT_${version}.txt' INTO TABLE language LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Language/der2_cRefset_LanguageSnapshot-en_${editionLabel}_${editionVersion}.txt' INTO TABLE language LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@acceptabilityId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -396,7 +396,7 @@ CREATE TABLE refsetdescriptor (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cciRefset_RefsetDescriptorSnapshot_INT_${version}.txt' INTO TABLE refsetdescriptor LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cciRefset_RefsetDescriptorSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE refsetdescriptor LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@attributeDescription,@attributeType,@attributeOrder)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -424,7 +424,7 @@ CREATE TABLE descriptiontype (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ciRefset_DescriptionTypeSnapshot_INT_${version}.txt' INTO TABLE descriptiontype LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ciRefset_DescriptionTypeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE descriptiontype LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@descriptionFormat,@descriptionLength)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -451,7 +451,7 @@ CREATE TABLE moduledependency (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ssRefset_ModuleDependencySnapshot_INT_${version}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ssRefset_ModuleDependencySnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@sourceEffectiveTime,@targetEffectiveTime)
 SET id = @id,
 effectiveTime = @effectiveTime,

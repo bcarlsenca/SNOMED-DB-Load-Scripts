@@ -1,12 +1,12 @@
 Welcome to SNOMED CT Oracle and MySQL Database Load Scripts
-http://www.wcinformatics.com/snomedtools/snomed-db-scripts.zip
+http://www.wcinformatics.com/resources.html
 
 Go to the above link for documentation, and additional downloads.
 
 Important Notes
 ---------------
-* These database load scripts are configured to work with the Jan 31, 2014
-  SNOMEDCT International Edition.
+* These database load scripts are configured to work with the ${editionVersion}
+  SNOMEDCT ${editionLabel} Edition.
 
 Key Features
 ------------
@@ -17,4 +17,4 @@ Key Features
 
 Developer Notes
 ---------------
-https://westcoastinformatics.ctf.cloudforge.com/sf/projects/westcoastinformaticswci/
+https://github.com/bcarlsenca/SNOMED-DB-Load-Scripts.git

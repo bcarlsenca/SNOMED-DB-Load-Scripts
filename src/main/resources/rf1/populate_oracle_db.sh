@@ -100,20 +100,6 @@ fi
 
 if [ $ef -ne 1 ]; then
 echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetmembersnonhuman.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat subsetmembersnonhuman.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetsnonhuman.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat subsetsnonhuman.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetmembersvtmvmp.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat subsetmembersvtmvmp.log >> oracle.log

@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Refset/Language/der2_cRefset_LanguageSnapshot-en_INT_${version}.txt' "str X'0d0a'"
+infile 'Snapshot/Refset/Language/der2_cRefset_LanguageSnapshot-en_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'language.bad'
 discardfile 'language.dsc'
 insert

@@ -1,7 +1,7 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_INT_${version}.txt' "str X'0d0a'"
+infile 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
 badfile 'textdefinition.bad'
 discardfile 'textdefinition.dsc'
 insert
