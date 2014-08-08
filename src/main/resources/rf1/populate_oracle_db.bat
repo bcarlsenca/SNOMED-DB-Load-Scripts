@@ -2,7 +2,7 @@
 :: Database connection parameters
 :: Please edit these variables to reflect your environment
 ::
-set ORACLE_HOME=C:\app\ocarlsen\product\11.2.0\dbhome_1
+set ORACLE_HOME=D:\app\oracle\product\12.1.0\dbhome_1
 set user=snomed
 set password=snomed
 set tns_name=global

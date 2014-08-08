@@ -4,7 +4,7 @@
 # Database connection parameters
 # Please edit these variables to reflect your environment
 #
-ORACLE_HOME=C:\\app\\ocarlsen\\product\\11.2.0\\dbhome_1
+ORACLE_HOME=/app/oracle/product/12.1.0/dbhome_1
 export ORACLE_HOME
 user=snomed
 password=snomed
