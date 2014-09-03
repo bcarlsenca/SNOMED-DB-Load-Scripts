@@ -246,8 +246,8 @@ PCTFREE 10 PCTUSED 80;
 
 -- Subsets NonHuman file.
 -- Commented out - no more non-human file
---EXECUTE drop_table('subsetsnonhuman');
---CREATE TABLE subsetsnonhuman (
+-- EXECUTE drop_table('subsetsnonhuman');
+-- CREATE TABLE subsetsnonhuman (
 --    SUBSETID NUMERIC(18) NOT NULL PRIMARY KEY,
 --    SUBSETORIGINALID NUMERIC(18) NOT NULL,
 --    SUBSETVERSION INT NOT NULL,
@@ -256,21 +256,21 @@ PCTFREE 10 PCTUSED 80;
 --    LANGUAGECODE CHAR(5) NOT NULL,
 --    REALMID NUMERIC(18),
 --    CONTEXTID NUMERIC(18)
---)
---PCTFREE 10 PCTUSED 80;
+-- )
+-- PCTFREE 10 PCTUSED 80;
 
 
 -- SubsetMembers NonHuman file.
---EXECUTE drop_table('subsetmembersnonhuman');
---CREATE TABLE subsetmembersnonhuman (
+-- EXECUTE drop_table('subsetmembersnonhuman');
+-- CREATE TABLE subsetmembersnonhuman (
 --    SUBSETID NUMERIC(18) NOT NULL,
 --    MEMBERID NUMERIC(18) NOT NULL,
 --    MEMBERSTATUS INT NOT NULL,
 --    LINKEDID VARCHAR2(100),
 --    FOREIGN KEY (SUBSETID) REFERENCES subsetsnonhuman(SUBSETID),
 --    FOREIGN KEY (MEMBERID) REFERENCES concepts(CONCEPTID)
---)
---PCTFREE 10 PCTUSED 80;
+-- )
+-- PCTFREE 10 PCTUSED 80;
 
 
 -- Subsets VTMVMP file.
