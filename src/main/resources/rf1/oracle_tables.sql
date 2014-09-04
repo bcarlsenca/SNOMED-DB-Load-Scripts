@@ -32,20 +32,20 @@ END;
 /
 
 
--- Concepts file.
+-- Concepts table.
 EXECUTE drop_table('concepts');
 CREATE TABLE concepts (
     CONCEPTID NUMERIC(18) NOT NULL PRIMARY KEY,
     CONCEPTSTATUS INT NOT NULL,
     FULLYSPECIFIEDNAME VARCHAR2(255) NOT NULL,
-    CTV3ID VARCHAR2(100) NOT NULL,
-    SNOMEDID VARCHAR2(100) NOT NULL,
+    CTV3ID VARCHAR2(100),
+    SNOMEDID VARCHAR2(100),
     ISPRIMITIVE NUMERIC(1) NOT NULL
 )
 PCTFREE 10 PCTUSED 80;
 
 
--- Descriptions file.
+-- Descriptions table.
 EXECUTE drop_table('descriptions');
 CREATE TABLE descriptions (
     DESCRIPTIONID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -59,7 +59,7 @@ CREATE TABLE descriptions (
 PCTFREE 10 PCTUSED 80;
 
 
--- Relationships file.
+-- Relationships table.
 EXECUTE drop_table('relationships');
 CREATE TABLE relationships (
     RELATIONSHIPID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -76,7 +76,7 @@ CREATE TABLE relationships (
 PCTFREE 10 PCTUSED 80;
 
 
--- Component History file.
+-- Component History table.
 EXECUTE drop_table('componenthistory');
 CREATE TABLE componenthistory (
     COMPONENTID NUMERIC(18) NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE componenthistory (
 PCTFREE 10 PCTUSED 80;
 
 
--- References file.
+-- References table.
 EXECUTE drop_table('references');
 CREATE TABLE references (
     COMPONENTID NUMERIC(18) NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE references (
 PCTFREE 10 PCTUSED 80;
 
 
--- CrossMapSets ICD9 file.
+-- CrossMapSets ICD9 table.
 EXECUTE drop_table('crossmapsetsicd9');
 CREATE TABLE crossmapsetsicd9 (
     MAPSETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -114,7 +114,7 @@ CREATE TABLE crossmapsetsicd9 (
 PCTFREE 10 PCTUSED 80;
 
 
--- CrossMapTargets ICD9 file.
+-- CrossMapTargets ICD9 table.
 EXECUTE drop_table('crossmaptargetsicd9');
 CREATE TABLE crossmaptargetsicd9 (
     TARGETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -126,7 +126,7 @@ CREATE TABLE crossmaptargetsicd9 (
 PCTFREE 10 PCTUSED 80;
 
 
--- CrossMaps ICD9 file.
+-- CrossMaps ICD9 table.
 EXECUTE drop_table('crossmapsicd9');
 CREATE TABLE crossmapsicd9 (
     MAPSETID NUMERIC(18) NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE crossmapsicd9 (
 PCTFREE 10 PCTUSED 80;
 
 
--- CrossMapSets ICDO file.
+-- CrossMapSets ICDO table.
 EXECUTE drop_table('crossmapsetsicdo');
 CREATE TABLE crossmapsetsicdo (
     MAPSETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -159,7 +159,7 @@ CREATE TABLE crossmapsetsicdo (
 PCTFREE 10 PCTUSED 80;
 
 
--- CrossMapTargets ICDO file.
+-- CrossMapTargets ICDO table.
 EXECUTE drop_table('crossmaptargetsicdo');
 CREATE TABLE crossmaptargetsicdo (
     TARGETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -171,7 +171,7 @@ CREATE TABLE crossmaptargetsicdo (
 PCTFREE 10 PCTUSED 80;
 
 
--- CrossMaps ICDO file.
+-- CrossMaps ICDO table.
 EXECUTE drop_table('crossmapsicdo');
 CREATE TABLE crossmapsicdo (
     MAPSETID NUMERIC(18) NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE crossmapsicdo (
 PCTFREE 10 PCTUSED 80;
 
 
--- Subsets en-GB file.
+-- Subsets en-GB table.
 EXECUTE drop_table('subsetsengb');
 CREATE TABLE subsetsengb (
     SUBSETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -203,7 +203,7 @@ CREATE TABLE subsetsengb (
 PCTFREE 10 PCTUSED 80;
 
 
--- SubsetMembers en-GB file.
+-- SubsetMembers en-GB table.
 EXECUTE drop_table('subsetmembersengb');
 CREATE TABLE subsetmembersengb (
     SUBSETID NUMERIC(18) NOT NULL,
@@ -216,7 +216,7 @@ CREATE TABLE subsetmembersengb (
 PCTFREE 10 PCTUSED 80;
 
 
--- Subsets en-US file.
+-- Subsets en-US table.
 EXECUTE drop_table('subsetsenus');
 CREATE TABLE subsetsenus (
     SUBSETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -231,7 +231,7 @@ CREATE TABLE subsetsenus (
 PCTFREE 10 PCTUSED 80;
 
 
--- SubsetMembers en-US file.
+-- SubsetMembers en-US table.
 EXECUTE drop_table('subsetmembersenus');
 CREATE TABLE subsetmembersenus (
     SUBSETID NUMERIC(18) NOT NULL,
@@ -273,7 +273,7 @@ PCTFREE 10 PCTUSED 80;
 -- PCTFREE 10 PCTUSED 80;
 
 
--- Subsets VTMVMP file.
+-- Subsets VTMVMP table.
 EXECUTE drop_table('subsetsvtmvmp');
 CREATE TABLE subsetsvtmvmp (
     SUBSETID NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -288,7 +288,7 @@ CREATE TABLE subsetsvtmvmp (
 PCTFREE 10 PCTUSED 80;
 
 
--- SubsetMembers VTMVMP file.
+-- SubsetMembers VTMVMP table.
 EXECUTE drop_table('subsetmembersvtmvmp');
 CREATE TABLE subsetmembersvtmvmp (
     SUBSETID NUMERIC(18) NOT NULL,
