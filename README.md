@@ -41,9 +41,10 @@ Installation
 	  "populate_oracle_db.sh" script.
   * Note: a complete log file will appear as "mysql.log" or 
 
- See Also
- --------
- * src/main/resources/LICENSE.txt
- * src/main/resources/README.txt
- * src/main/resources/HOWTO.txt
+
+See Also
+--------
+* src/main/resources/LICENSE.txt
+* src/main/resources/README.txt
+* src/main/resources/HOWTO.txt
    
