@@ -14,11 +14,14 @@ Installation
 ------------
 1.  Download the SNOMED CT International Release files 
     in ZIP format.  US Users can find the files here:
-* SNOMED CT® Release Files: http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctfiles.html
-* SNOMED CT® Archive Files" http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctarchive.html
+  * SNOMED CT® Release Files: 
+    * http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctfiles.html
+  * SNOMED CT® Archive Files" 
+    * http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctarchive.html
     Download the SNOMED CT International Release files 
     in ZIP format.  US Users can find the files here:
-* SNOMED CT® US Edition Release Files: http://www.nlm.nih.gov/research/umls/Snomed/us_edition.html
+  * SNOMED CT® US Edition Release Files: 
+    * http://www.nlm.nih.gov/research/umls/Snomed/us_edition.html
 2.  Unzip the files into a folder 
 3.  Unzip the installer scripts.
 4.  For the desired format, copy the appropriate installer scripts 
