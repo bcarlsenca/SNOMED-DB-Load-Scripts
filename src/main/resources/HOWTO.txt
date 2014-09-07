@@ -2,12 +2,14 @@ This HOWTO describes how to use the installer scripts to load SNOMED into a data
 
 0.  Download the SNOMED CT International Release files 
     in ZIP format.  US Users can find the files here:
-	• SNOMED CT® Release Files 
+	• SNOMED CT® International Edition Release Files 
 	  - http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctfiles.html
-	• SNOMED CT® Archive Files 
+	• SNOMED CT® International Edition Archive Files 
 	  - http://www.nlm.nih.gov/research/umls/licensedcontent/snomedctarchive.html
-   
-    Download the SNOMED CT International Release files 
+
+    OR 
+       
+    Download the SNOMED CT US Edition Release files 
     in ZIP format.  US Users can find the files here:
 	• SNOMED CT® US Edition Release Files 
 	  - http://www.nlm.nih.gov/research/umls/Snomed/us_edition.html
