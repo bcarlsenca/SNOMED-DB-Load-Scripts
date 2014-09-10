@@ -1,3 +1,18 @@
+/*
+// Copyright 2014 West Coast Informatics, LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+*/
 package com.wcinformatics.snomed.rf2;
 
 import java.io.BufferedReader;
@@ -13,11 +28,11 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class TransitiveClosureGenerator.
+ * Builder for a transitive closure table from SNOMED CT
+ * RF2 Snapshot inferred relationships file.
  *
- * @author ${author}
+ * @author bcarlsen@westcoastinformatics.com
  */
 public class TransitiveClosureGenerator {
 
@@ -80,13 +95,13 @@ public class TransitiveClosureGenerator {
   }
 
   /**
-   * Compute.
+   * Compute the transitive closure file.
    *
    * @throws Exception the exception
    */
   public void compute() throws Exception {
     Logger.getLogger(this.getClass().getName()).log(Level.INFO,
-        "COMPUTE transitive closuer");
+        "Start computing transitive closure ... " + new Date());
 
     if (relationshipsFile == null) {
       throw new Exception("Unexpected null relationships file.");
@@ -154,7 +169,7 @@ public class TransitiveClosureGenerator {
       }
       Set<String> children = parChd.get(par);
       children.add(chd);
-      ct ++;
+      ct++;
     }
     Logger.getLogger(this.getClass().getName()).log(Level.INFO,
         "      ct = " + ct);
@@ -165,22 +180,31 @@ public class TransitiveClosureGenerator {
         "    Write transitive closure table ... " + new Date());
     ct = 0;
     for (String code : parChd.keySet()) {
+      Logger.getLogger(this.getClass().getName()).log(Level.FINE,
+          "      compute for " + code);
+      
       if (root.equals(code)) {
         continue;
       }
       ct++;
       Set<String> descs = getDescendants(code, new HashSet<String>(), parChd);
       for (String desc : descs) {
-        out.println(code + "\t" + desc + "\r\n");
+        Logger.getLogger(this.getClass().getName()).log(Level.FINEST,
+          code + "\t" + desc + "\r\n");
+        out.print(code + "\t" + desc + "\r\n");
+        out.flush();
       }
+      Logger.getLogger(this.getClass().getName()).log(Level.FINE,
+          "      desc ct = " + descs.size());
       if (ct % 10000 == 0) {
         Logger.getLogger(this.getClass().getName()).log(Level.INFO,
             "      " + ct + " codes processed ..." + new Date());
       }
-      out.close();
-      in.close();
-
     }
+    out.close();
+    in.close();
+    Logger.getLogger(this.getClass().getName()).log(Level.INFO,
+        "Finished computing transitive closure ... " + new Date());
   }
 
   /**
@@ -193,7 +217,6 @@ public class TransitiveClosureGenerator {
    */
   public Set<String> getDescendants(String par, Set<String> seen,
     Map<String, Set<String>> parChd) {
-
     // if we've seen this node already, children are accounted for - bail
     if (seen.contains(par)) {
       return new HashSet<>();
@@ -204,7 +227,7 @@ public class TransitiveClosureGenerator {
     Set<String> children = parChd.get(par);
 
     // If this is a leaf node, bail
-    if (children == null || children.isEmpty()) {      
+    if (children == null || children.isEmpty()) {
       return new HashSet<>();
     }
 
@@ -222,22 +245,23 @@ public class TransitiveClosureGenerator {
     return descendants;
   }
 
-  
   /**
-   * Application entry point.
+   * Application entry point. The first parameter should be the path to a
+   * snapshot inferred RF2 relationships file. The second parameter should be
+   * the output filename and should not yet exist.
    *
    * @param argv the command line arguments
    */
   public static void main(String[] argv) {
     try {
-     TransitiveClosureGenerator generator = new TransitiveClosureGenerator();
-     generator.setRelationshipsFile(argv[0]);
-     generator.setOutputFile(argv[1]);
-     generator.compute();
+      TransitiveClosureGenerator generator = new TransitiveClosureGenerator();
+      generator.setRelationshipsFile(argv[0]);
+      generator.setOutputFile(argv[1]);
+      generator.compute();
     } catch (Throwable t) {
       t.printStackTrace();
       System.exit(1);
     }
   }
-  
+
 }
