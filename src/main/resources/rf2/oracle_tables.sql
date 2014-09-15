@@ -32,7 +32,7 @@ END;
 /
 
 
--- Concept file.
+-- Concept table.
 EXECUTE drop_table('concept');
 CREATE TABLE concept (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -46,7 +46,7 @@ CREATE TABLE concept (
 PCTFREE 10 PCTUSED 80;
 
 
--- Description file.
+-- Description table.
 EXECUTE drop_table('description');
 CREATE TABLE description (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -66,7 +66,7 @@ CREATE TABLE description (
 PCTFREE 10 PCTUSED 80;
 
 
--- Identifier file.
+-- Identifier table.
 EXECUTE drop_table('identifier');
 CREATE TABLE identifier (
     identifierSchemeId NUMERIC(18) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE identifier (
 PCTFREE 10 PCTUSED 80;
 
 
--- Relationship file.
+-- Relationship table.
 EXECUTE drop_table('relationship');
 CREATE TABLE relationship (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -103,7 +103,7 @@ CREATE TABLE relationship (
 PCTFREE 10 PCTUSED 80;
 
 
--- Stated Relationship file.
+-- Stated Relationship table.
 EXECUTE drop_table('statedrelationship');
 CREATE TABLE statedrelationship (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -126,7 +126,7 @@ CREATE TABLE statedrelationship (
 PCTFREE 10 PCTUSED 80;
 
 
--- Text Definition file.
+-- Text Definition table.
 EXECUTE drop_table('textdefinition');
 CREATE TABLE textdefinition (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
@@ -146,7 +146,7 @@ CREATE TABLE textdefinition (
 PCTFREE 10 PCTUSED 80;
 
 
--- Association Reference refset file.
+-- Association Reference refset table.
 EXECUTE drop_table('associationreference');
 CREATE TABLE associationreference (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -163,7 +163,7 @@ CREATE TABLE associationreference (
 PCTFREE 10 PCTUSED 80;
 
 
--- Attribute Value refset file.
+-- Attribute Value refset table.
 EXECUTE drop_table('attributevalue');
 CREATE TABLE attributevalue (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -180,7 +180,7 @@ CREATE TABLE attributevalue (
 PCTFREE 10 PCTUSED 80;
 
 
--- Simple refset file.
+-- Simple refset table.
 EXECUTE drop_table('simple');
 CREATE TABLE simple (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -195,7 +195,7 @@ CREATE TABLE simple (
 PCTFREE 10 PCTUSED 80;
 
 
--- Complex Map refset file.
+-- Complex Map refset table.
 EXECUTE drop_table('complexmap');
 CREATE TABLE complexmap (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -217,7 +217,7 @@ CREATE TABLE complexmap (
 PCTFREE 10 PCTUSED 80;
 
 
--- Extended Map refset file.
+-- Extended Map refset table.
 EXECUTE drop_table('extendedmap');
 CREATE TABLE extendedmap (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -241,7 +241,7 @@ CREATE TABLE extendedmap (
 PCTFREE 10 PCTUSED 80;
 
 
--- Simple Map refset file.
+-- Simple Map refset table.
 EXECUTE drop_table('simplemap');
 CREATE TABLE simplemap (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -257,7 +257,7 @@ CREATE TABLE simplemap (
 PCTFREE 10 PCTUSED 80;
 
 
--- Lanuage refset file.
+-- Lanuage refset table.
 EXECUTE drop_table('language');
 CREATE TABLE language (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -274,7 +274,7 @@ CREATE TABLE language (
 PCTFREE 10 PCTUSED 80;
 
 
--- Refset Descriptor refset file.
+-- Refset Descriptor refset table.
 EXECUTE drop_table('refsetdescriptor');
 CREATE TABLE refsetdescriptor (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -292,7 +292,7 @@ CREATE TABLE refsetdescriptor (
 PCTFREE 10 PCTUSED 80;
 
 
--- Description Type refset file.
+-- Description Type refset table.
 EXECUTE drop_table('descriptiontype');
 CREATE TABLE descriptiontype (
     id CHAR(52) NOT NULL PRIMARY KEY,
@@ -309,7 +309,7 @@ CREATE TABLE descriptiontype (
 PCTFREE 10 PCTUSED 80;
 
 
--- Module Dependency refset file.
+-- Module Dependency refset table.
 EXECUTE drop_table('moduledependency');
 CREATE TABLE moduledependency (
     id CHAR(52) NOT NULL PRIMARY KEY,

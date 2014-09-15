@@ -67,7 +67,7 @@ AND moduleId = cpn2.conceptId
 AND definitionStatusId = cpn3.conceptId;
 
 
--- Description file.
+-- Description table.
 EXECUTE drop_view('descriptionwithnames');
 CREATE VIEW descriptionwithnames AS
 SELECT id, term, effectiveTime, active,
@@ -84,7 +84,7 @@ FROM description d,
 WHERE moduleId = cpn1.conceptId AND d.conceptId = cpn2.conceptId AND typeId = cpn3.conceptId AND caseSignificanceId = cpn4.conceptId;
 
 
--- Identifier file.
+-- Identifier table.
 EXECUTE drop_view('identifierwithnames');
 CREATE VIEW identifierwithnames AS
 SELECT identifierSchemeId, cpn1.preferredName identifierSchemeIdName,
@@ -98,7 +98,7 @@ WHERE identifierSchemeId = cpn1.conceptId
 AND moduleId = cpn2.conceptId;
 
 
--- Relationship file.
+-- Relationship table.
 EXECUTE drop_view('relationshipwithnames');
 CREATE VIEW relationshipwithnames AS
 SELECT id, effectiveTime, active, 
@@ -124,7 +124,7 @@ AND characteristicTypeId = cpn5.conceptId
 AND modifierId = cpn6.conceptId;
 
 
--- Stated Relationship file.
+-- Stated Relationship table.
 EXECUTE drop_view('statedrelationshipwithnames');
 CREATE VIEW statedrelationshipwithnames AS
 SELECT id, effectiveTime, active, 
@@ -150,7 +150,7 @@ AND characteristicTypeId = cpn5.conceptId
 AND modifierId = cpn6.conceptId;
 
 
--- Text Definition file.
+-- Text Definition table.
 EXECUTE drop_view('textdefinitionwithnames');
 CREATE VIEW textdefinitionwithnames AS
 SELECT id, term, effectiveTime, active,
@@ -170,7 +170,7 @@ AND typeId = cpn3.conceptId
 AND caseSignificanceId = cpn4.conceptId;
 
 
--- Association Reference refset file.
+-- Association Reference refset table.
 EXECUTE drop_view('associationreferencewithnames');
 CREATE VIEW associationreferencewithnames AS
 SELECT id, effectiveTime, active,
@@ -189,7 +189,7 @@ AND referencedComponentId = cpn3.conceptId
 AND targetComponent = cpn4.conceptId;
 
 
--- Attribute Value refset file.
+-- Attribute Value refset table.
 EXECUTE drop_view('attributevaluewithnames');
 CREATE VIEW attributevaluewithnames AS
 SELECT attributevalue.id, effectiveTime, active,
@@ -210,7 +210,7 @@ AND referencedComponentId = cpn3.id
 AND valueId = cpn4.conceptId;
 
 
--- Simple refset file.
+-- Simple refset table.
 EXECUTE drop_view('simplewithnames');
 CREATE VIEW simplewithnames AS
 SELECT id, effectiveTime, active,
@@ -226,7 +226,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Complex Map refset file.
+-- Complex Map refset table.
 EXECUTE drop_view('complexmapwithnames');
 CREATE VIEW complexmapwithnames AS
 SELECT id, effectiveTime, active,
@@ -250,7 +250,7 @@ AND referencedComponentId = cpn3.conceptId
 AND correlationId = cpn4.conceptId;
 
 
--- Extended Map refset file.
+-- Extended Map refset table.
 EXECUTE drop_view('extendedmapwithnames');
 CREATE VIEW extendedmapwithnames AS
 SELECT id, effectiveTime, active,
@@ -277,7 +277,7 @@ AND correlationId = cpn4.conceptId
 AND mapCategoryId = cpn5.conceptId;
 
 
--- Simple Map refset file.
+-- Simple Map refset table.
 EXECUTE drop_view('simplemapwithnames');
 CREATE VIEW simplemapwithnames AS
 SELECT id, effectiveTime, active,
@@ -294,7 +294,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Language refset file.
+-- Language refset table.
 EXECUTE drop_view('languagewithnames');
 CREATE VIEW languagewithnames AS
 SELECT id, effectiveTime, active,
@@ -313,7 +313,7 @@ AND referencedComponentId = cpn3.descriptionId
 AND acceptabilityId = cpn4.conceptId;
 
 
--- Refset Descriptor refset file.
+-- Refset Descriptor refset table.
 EXECUTE drop_view('refsetdescriptorwithnames');
 CREATE VIEW refsetdescriptorwithnames AS
 SELECT id, effectiveTime, active,
@@ -330,7 +330,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Description Type refset file.
+-- Description Type refset table.
 EXECUTE drop_view('descriptiontypewithnames');
 CREATE VIEW descriptiontypewithnames AS
 SELECT id, effectiveTime, active,
@@ -347,7 +347,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Module Dependency refset file.
+-- Module Dependency refset table.
 EXECUTE drop_view('moduledependencywithnames');
 CREATE VIEW moduledependencywithnames AS
 SELECT id, effectiveTime, active,

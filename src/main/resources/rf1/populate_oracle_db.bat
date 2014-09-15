@@ -133,4 +133,5 @@ echo Finished ...  >> oracle.log 2>&1
 date /T >> oracle.log 2>&1
 time /T >> oracle.log 2>&1
 echo ---------------------------------------- >> oracle.log 2>&1
+pause
 exit %retval%

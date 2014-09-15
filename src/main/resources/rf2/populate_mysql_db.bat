@@ -47,4 +47,5 @@ echo Finished ...  >> mysql.log 2>&1
 date /T >> mysql.log 2>&1
 time /T >> mysql.log 2>&1
 echo ---------------------------------------- >> mysql.log 2>&1
+pause
 exit %retval%

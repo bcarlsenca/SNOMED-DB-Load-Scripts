@@ -39,7 +39,7 @@ Installation
 	  "populate_mysql_db.sh" script.
   * For Oracle on Linux/Unix/MacOS, open a terminal and run the 
 	  "populate_oracle_db.sh" script.
-  * Note: a complete log file will appear as "mysql.log" or 
+  * Note: a complete log file will appear as "mysql.log" or "oracle.log"
 
 
 See Also

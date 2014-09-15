@@ -36,7 +36,7 @@ AND moduleId = cpn2.conceptId
 AND definitionStatusId = cpn3.conceptId;
 
 
--- Description file.
+-- Description table.
 DROP VIEW IF EXISTS descriptionwithnames;
 CREATE VIEW descriptionwithnames AS
 SELECT id, term, effectiveTime, active,
@@ -53,7 +53,7 @@ FROM description d,
 WHERE moduleId = cpn1.conceptId AND d.conceptId = cpn2.conceptId AND typeId = cpn3.conceptId AND caseSignificanceId = cpn4.conceptId;
 
 
--- Identifier file.
+-- Identifier table.
 DROP VIEW IF EXISTS identifierwithnames;
 CREATE VIEW identifierwithnames AS
 SELECT identifierSchemeId, cpn1.preferredName identifierSchemeIdName,
@@ -67,7 +67,7 @@ WHERE identifierSchemeId = cpn1.conceptId
 AND moduleId = cpn2.conceptId;
 
 
--- Relationship file.
+-- Relationship table.
 DROP VIEW IF EXISTS relationshipwithnames;
 CREATE VIEW relationshipwithnames AS
 SELECT id, effectiveTime, active, 
@@ -93,7 +93,7 @@ AND characteristicTypeId = cpn5.conceptId
 AND modifierId = cpn6.conceptId;
 
 
--- Stated Relationship file.
+-- Stated Relationship table.
 DROP VIEW IF EXISTS statedrelationshipwithnames;
 CREATE VIEW statedrelationshipwithnames AS
 SELECT id, effectiveTime, active, 
@@ -119,7 +119,7 @@ AND characteristicTypeId = cpn5.conceptId
 AND modifierId = cpn6.conceptId;
 
 
--- Text Definition file.
+-- Text Definition table.
 DROP VIEW IF EXISTS textdefinitionwithnames;
 CREATE VIEW textdefinitionwithnames AS
 SELECT id, term, effectiveTime, active,
@@ -139,7 +139,7 @@ AND typeId = cpn3.conceptId
 AND caseSignificanceId = cpn4.conceptId;
 
 
--- Association Reference refset file.
+-- Association Reference refset table.
 DROP VIEW IF EXISTS associationreferencewithnames;
 CREATE VIEW associationreferencewithnames AS
 SELECT id, effectiveTime, active,
@@ -158,7 +158,7 @@ AND referencedComponentId = cpn3.conceptId
 AND targetComponent = cpn4.conceptId;
 
 
--- Attribute Value refset file.
+-- Attribute Value refset table.
 DROP VIEW IF EXISTS attributevaluewithnames;
 CREATE VIEW attributevaluewithnames AS
 SELECT id, effectiveTime, active,
@@ -173,7 +173,7 @@ INNER JOIN conceptpreferredname cpn2 ON refsetId = cpn2.conceptId
 INNER JOIN conceptpreferredname cpn4 ON valueId = cpn4.conceptId;
 
 
--- Simple refset file.
+-- Simple refset table.
 DROP VIEW IF EXISTS simplewithnames;
 CREATE VIEW simplewithnames AS
 SELECT id, effectiveTime, active,
@@ -190,7 +190,7 @@ AND referencedComponentId = cpn3.conceptId;
 
 
 
--- Complex Map refset file.
+-- Complex Map refset table.
 DROP VIEW IF EXISTS complexmapwithnames;
 CREATE VIEW complexmapwithnames AS
 SELECT id, effectiveTime, active,
@@ -214,7 +214,7 @@ AND referencedComponentId = cpn3.conceptId
 AND correlationId = cpn4.conceptId;
 
 
--- Extended Map refset file.
+-- Extended Map refset table.
 DROP VIEW IF EXISTS extendedmapwithnames;
 CREATE VIEW extendedmapwithnames AS
 SELECT id, effectiveTime, active,
@@ -241,7 +241,7 @@ AND correlationId = cpn4.conceptId
 AND mapCategoryId = cpn5.conceptId;
 
 
--- Simple Map refset file.
+-- Simple Map refset table.
 DROP VIEW IF EXISTS simplemapwithnames;
 CREATE VIEW simplemapwithnames AS
 SELECT id, effectiveTime, active,
@@ -258,7 +258,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Language refset file.
+-- Language refset table.
 DROP VIEW IF EXISTS languagewithnames;
 CREATE VIEW languagewithnames AS
 SELECT id, effectiveTime, active,
@@ -277,7 +277,7 @@ AND referencedComponentId = cpn3.descriptionId
 AND acceptabilityId = cpn4.conceptId;
 
 
--- Refset Descriptor refset file.
+-- Refset Descriptor refset table.
 DROP VIEW IF EXISTS refsetdescriptorwithnames;
 CREATE VIEW refsetdescriptorwithnames AS
 SELECT id, effectiveTime, active,
@@ -294,7 +294,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Description Type refset file.
+-- Description Type refset table.
 DROP VIEW IF EXISTS descriptiontypewithnames;
 CREATE VIEW descriptiontypewithnames AS
 SELECT id, effectiveTime, active,
@@ -311,7 +311,7 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
--- Module Dependency refset file.
+-- Module Dependency refset table.
 DROP VIEW IF EXISTS moduledependencywithnames;
 CREATE VIEW moduledependencywithnames AS
 SELECT id, effectiveTime, active,
