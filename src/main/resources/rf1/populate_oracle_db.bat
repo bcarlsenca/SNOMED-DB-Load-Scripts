@@ -76,16 +76,6 @@ IF %ERRORLEVEL% NEQ 0 (set error=1)
 type subsetsenus.log >> oracle.log
 
 echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="subsetmembersvtmvmp.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type subsetmembersvtmvmp.log >> oracle.log
-
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="subsetsvtmvmp.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type subsetsvtmvmp.log >> oracle.log
-
-echo     Load content tables >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="concepts.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type concepts.log >> oracle.log
