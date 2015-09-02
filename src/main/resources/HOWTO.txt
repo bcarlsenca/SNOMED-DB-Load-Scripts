@@ -16,11 +16,11 @@ Installation
 3.  Unzip the installer scripts.
 
 4.  For the desired format, copy the appropriate installer scripts 
-    to the release file subdirectory specified below:
+    to the release file directory as specified below:
 * To install from RF1, copy the installer scripts from rf1/
-	  and paste them into the RF1Release directory
+	  and paste them into the RF1 directory you unzipped in step 2
 * To install from RF2, copy the installer scripts from rf2/
-	  and paste them into the RF2Release directory
+	  and paste them into the RF2 directory you unzipped in step 2
 
 5.  Set the variables in the script, such as database username/password.
 
