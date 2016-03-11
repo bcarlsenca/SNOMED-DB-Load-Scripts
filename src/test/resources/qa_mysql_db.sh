@@ -46,7 +46,7 @@ if [ $ef -ne 1 ]; then
 echo "    Compare line counts ... `/bin/date`" >> mysql.log 2>&1
 
 # TODO: Implement.
-in=$(wc -l Snapshot/Terminology/sct2_Concept_Snapshot_INT_20150131.txt | cut -d ' ' -f 1)
+in=$(wc -l Snapshot/Terminology/sct2_Concept_Snapshot_INT_20160131.txt | cut -d ' ' -f 1)
 out=$(wc -l c:/TEMP/Concept.txt | cut -d ' ' -f 1)
 expect $out $[$in - 1]
 
