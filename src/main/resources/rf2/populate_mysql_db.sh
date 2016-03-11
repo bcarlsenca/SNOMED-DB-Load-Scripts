@@ -4,7 +4,7 @@
 # Database connection parameters
 # Please edit these variables to reflect your environment
 #
-MYSQL_HOME="C:\\Program Files\\MySQL\\MySQL Server 5.6"
+MYSQL_HOME=/usr
 user=root
 password=admin
 db_name=snomed
