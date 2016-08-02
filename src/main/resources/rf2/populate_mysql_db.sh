@@ -1,8 +1,9 @@
-#!/bin/sh -f
+#!/bin/bash -f
 
 #
 # Database connection parameters
 # Please edit these variables to reflect your environment
+#   - Tested on Windows with "Git Bash" as a shell
 #
 MYSQL_HOME=/usr
 user=root
