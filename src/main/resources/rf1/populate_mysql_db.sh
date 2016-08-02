@@ -4,6 +4,7 @@
 # Database connection parameters
 # Please edit these variables to reflect your environment
 #   - Tested on Windows with "Git Bash" as a shell
+#   - and MYSQL_HOME="/c/Program Files/MySQL/MySQL Server 5.6"
 #
 MYSQL_HOME=/usr
 user=root
@@ -25,7 +26,7 @@ echo "db_name =    $db_name" >> mysql.log 2>&1
 
 if [ "${password}" != "" ]; then
   password="-p${password}"
-if
+fi
 
 echo "    Create and load tables ... `/bin/date`" >> mysql.log 2>&1
 "$MYSQL_HOME/bin/mysql" -vvv -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1

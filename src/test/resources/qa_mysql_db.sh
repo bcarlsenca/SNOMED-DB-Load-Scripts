@@ -26,8 +26,12 @@ echo "MYSQL_HOME = $MYSQL_HOME" >> mysql.log 2>&1
 echo "user =       $user" >> mysql.log 2>&1
 echo "db_name =    $db_name" >> mysql.log 2>&1
 
+if [ "${password}" != "" ]; then
+  password="-p${password}"
+fi
+
 echo "    Export tables ... `/bin/date`" >> mysql.log 2>&1
-"$MYSQL_HOME/bin/mysql" -vvv -u $user -p$password $db_name < export_mysql.sql >> mysql.log 2>&1
+"$MYSQL_HOME/bin/mysql" -vvv -u $user $password $db_name < export_mysql.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 
 

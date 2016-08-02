@@ -158,7 +158,7 @@ CREATE TABLE textdefinition (
     conceptId NUMERIC(18) UNSIGNED NOT NULL,
     languageCode CHAR(2) NOT NULL,
     typeId NUMERIC(18) UNSIGNED NOT NULL,
-    term VARCHAR(1024) NOT NULL,
+    term VARCHAR(2048) NOT NULL,
     caseSignificanceId NUMERIC(18) UNSIGNED NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (conceptId) REFERENCES concept(id),
