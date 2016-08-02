@@ -189,29 +189,29 @@ AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
 
-
+-- No more complex map, ICD9CM maps deprecated
 -- Complex Map refset table.
-DROP VIEW IF EXISTS complexmapwithnames;
-CREATE VIEW complexmapwithnames AS
-SELECT id, effectiveTime, active,
-    moduleId, cpn1.preferredName moduleIdName,
-    refsetId, cpn2.preferredName refsetIdName,
-    referencedComponentId, cpn3.preferredName referencedComponentIdName,
-    mapGroup,
-    mapPriority,
-    mapRule,
-    mapAdvice,
-    mapTarget,
-    correlationId, cpn4.preferredName correlationIdName 
-FROM complexmap,
-    conceptpreferredname cpn1,
-    conceptpreferredname cpn2,
-    conceptpreferredname cpn3,
-    conceptpreferredname cpn4
-WHERE moduleId = cpn1.conceptId
-AND refsetId = cpn2.conceptId
-AND referencedComponentId = cpn3.conceptId
-AND correlationId = cpn4.conceptId;
+-- DROP VIEW IF EXISTS complexmapwithnames;
+-- CREATE VIEW complexmapwithnames AS
+-- SELECT id, effectiveTime, active,
+--    moduleId, cpn1.preferredName moduleIdName,
+--    refsetId, cpn2.preferredName refsetIdName,
+--    referencedComponentId, cpn3.preferredName referencedComponentIdName,
+--    mapGroup,
+--    mapPriority,
+--    mapRule,
+--    mapAdvice,
+--    mapTarget,
+--    correlationId, cpn4.preferredName correlationIdName 
+-- FROM complexmap,
+--    conceptpreferredname cpn1,
+--    conceptpreferredname cpn2,
+--    conceptpreferredname cpn3,
+--    conceptpreferredname cpn4
+-- WHERE moduleId = cpn1.conceptId
+-- AND refsetId = cpn2.conceptId
+-- AND referencedComponentId = cpn3.conceptId
+-- AND correlationId = cpn4.conceptId;
 
 
 -- Extended Map refset table.

@@ -7,7 +7,8 @@ CREATE INDEX x_assocrefer_refercompid ON associationreference(referencedComponen
 
 CREATE INDEX x_attrvalue_refercompid ON attributevalue(referencedComponentId);
 
-CREATE INDEX x_complexmap_refercompid ON complexmap(referencedComponentId);
+-- No more complex map, ICD9CM maps deprecated
+-- CREATE INDEX x_complexmap_refercompid ON complexmap(referencedComponentId);
 
 CREATE INDEX x_extendedmap_refercompid ON extendedmap(referencedComponentId);
 

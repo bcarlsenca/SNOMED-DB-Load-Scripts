@@ -25,77 +25,78 @@ echo @oracle_tables.sql|%ORACLE_HOME%\bin\sqlplus %user%/%password%@%tns_name%  
 IF %ERRORLEVEL% NEQ 0 (set error=1
 goto trailer)
 
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsicd9.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type crossmapsicd9.log >> oracle.log
+:: No more CrossMaps
+:: echo     Load crossmaps icd9 table data >> oracle.log 2>&1
+:: %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsicd9.ctl" >> oracle.log 2>&1
+:: IF %ERRORLEVEL% NEQ 0 (set error=1)
+:: type crossmapsicd9.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsetsicd9.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type crossmapsetsicd9.log >> oracle.log
+:: echo     Load crossmap sets icd9 table data >> oracle.log 2>&1
+:: %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsetsicd9.ctl" >> oracle.log 2>&1
+:: IF %ERRORLEVEL% NEQ 0 (set error=1)
+:: type crossmapsetsicd9.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmaptargetsicd9.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type crossmaptargetsicd9.log >> oracle.log
+:: echo     Load crossmap targets icd9 table data >> oracle.log 2>&1
+:: %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmaptargetsicd9.ctl" >> oracle.log 2>&1
+:: IF %ERRORLEVEL% NEQ 0 (set error=1)
+:: type crossmaptargetsicd9.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsicdo.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type crossmapsicdo.log >> oracle.log
+:: echo     Load crossmaps icdo table data >> oracle.log 2>&1
+:: %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsicdo.ctl" >> oracle.log 2>&1
+:: IF %ERRORLEVEL% NEQ 0 (set error=1)
+:: type crossmapsicdo.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsetsicdo.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type crossmapsetsicdo.log >> oracle.log
+:: echo     Load crossmap sets icdo table data >> oracle.log 2>&1
+:: %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmapsetsicdo.ctl" >> oracle.log 2>&1
+:: IF %ERRORLEVEL% NEQ 0 (set error=1)
+:: type crossmapsetsicdo.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmaptargetsicdo.ctl" >> oracle.log 2>&1
-IF %ERRORLEVEL% NEQ 0 (set error=1)
-type crossmaptargetsicdo.log >> oracle.log
+:: echo     Load crossmap targets icdo table data >> oracle.log 2>&1
+:: %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="crossmaptargetsicdo.ctl" >> oracle.log 2>&1
+:: IF %ERRORLEVEL% NEQ 0 (set error=1)
+:: type crossmaptargetsicdo.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load subsetmembers engb table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="subsetmembersengb.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type subsetmembersengb.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load subsets engb table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="subsetsengb.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type subsetsengb.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load subsetmember enus table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="subsetmembersenus.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type subsetmembersenus.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load subsets enus table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="subsetsenus.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type subsetsenus.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load concepts table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="concepts.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type concepts.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load descriptions table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="descriptions.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type descriptions.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load relationship table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="relationships.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type relationships.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load component history table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="componenthistory.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type componenthistory.log >> oracle.log
 
-echo     Load content tables >> oracle.log 2>&1
+echo     Load references table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="references.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type references.log >> oracle.log

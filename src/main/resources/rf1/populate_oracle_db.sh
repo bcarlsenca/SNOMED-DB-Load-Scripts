@@ -27,107 +27,108 @@ echo "tns_name =    $tns_name" >> oracle.log 2>&1
 echo "    Create tables ... `/bin/date`" >> oracle.log 2>&1
 echo "@oracle_tables.sql"|$ORACLE_HOME/bin/sqlplus $user/$password@$tns_name  >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
- 
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsicd9.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat crossmapsicd9.log >> oracle.log
-fi
+
+# No more CrossMaps
+#if [ $ef -ne 1 ]; then
+#echo "    Load crossmaps icd9 table data ... `/bin/date`" >> oracle.log 2>&1
+#$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsicd9.ctl" >> oracle.log 2>&1
+#if [ $? -ne 0 ]; then ef=1; fi
+#cat crossmapsicd9.log >> oracle.log
+#fi
+
+#if [ $ef -ne 1 ]; then
+#echo "    Load crossmap sets icd9 table data ... `/bin/date`" >> oracle.log 2>&1
+#$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsetsicd9.ctl" >> oracle.log 2>&1
+#if [ $? -ne 0 ]; then ef=1; fi
+#cat crossmapsetsicd9.log >> oracle.log
+#fi
+
+#if [ $ef -ne 1 ]; then
+#echo "    Load crossmap targets icd9 table data ... `/bin/date`" >> oracle.log 2>&1
+#$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmaptargetsicd9.ctl" >> oracle.log 2>&1
+#if [ $? -ne 0 ]; then ef=1; fi
+#cat crossmaptargetsicd9.log >> oracle.log
+#fi
+
+#if [ $ef -ne 1 ]; then
+#echo "    Load crossmaps icdo table data ... `/bin/date`" >> oracle.log 2>&1
+#$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsicdo.ctl" >> oracle.log 2>&1
+#if [ $? -ne 0 ]; then ef=1; fi
+#cat crossmapsicdo.log >> oracle.log
+#fi
+
+#if [ $ef -ne 1 ]; then
+#echo "    Load crossmap sets icdo table data ... `/bin/date`" >> oracle.log 2>&1
+#$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsetsicdo.ctl" >> oracle.log 2>&1
+#if [ $? -ne 0 ]; then ef=1; fi
+#cat crossmapsetsicdo.log >> oracle.log
+#fi
+
+#if [ $ef -ne 1 ]; then
+#echo "    Load crossmap targets icdo table data ... `/bin/date`" >> oracle.log 2>&1
+#$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmaptargetsicdo.ctl" >> oracle.log 2>&1
+#if [ $? -ne 0 ]; then ef=1; fi
+#cat crossmaptargetsicdo.log >> oracle.log
+#fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsetsicd9.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat crossmapsetsicd9.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmaptargetsicd9.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat crossmaptargetsicd9.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsicdo.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat crossmapsicdo.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmapsetsicdo.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat crossmapsetsicdo.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="crossmaptargetsicdo.ctl" >> oracle.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
-cat crossmaptargetsicdo.log >> oracle.log
-fi
-
-if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load subsetmembers engb table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetmembersengb.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat subsetmembersengb.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load subsets engb table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetsengb.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat subsetsengb.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load subsetmembers enus table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetmembersenus.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat subsetmembersenus.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load subsets enus table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="subsetsenus.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat subsetsenus.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load concepts table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="concepts.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat concepts.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load descriptions table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="descriptions.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat descriptions.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load relationships table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="relationships.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat relationships.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load component history table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="componenthistory.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat componenthistory.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load content table data ... `/bin/date`" >> oracle.log 2>&1
+echo "    Load references table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="references.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 cat references.log >> oracle.log

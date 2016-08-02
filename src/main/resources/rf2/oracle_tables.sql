@@ -194,27 +194,27 @@ CREATE TABLE simple (
 )
 PCTFREE 10 PCTUSED 80;
 
-
+-- No more complex map, ICD9CM maps deprecated
 -- Complex Map refset table.
-EXECUTE drop_table('complexmap');
-CREATE TABLE complexmap (
-    id CHAR(52) NOT NULL PRIMARY KEY,
-    effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
-    moduleId NUMERIC(18) NOT NULL,
-    refsetId NUMERIC(18) NOT NULL,
-    referencedComponentId NUMERIC(18) NOT NULL,
-    mapGroup INT NOT NULL,
-    mapPriority INT NOT NULL,
-    mapRule VARCHAR2(4000),
-    mapAdvice VARCHAR2(4000),
-    mapTarget VARCHAR2(100),
-    correlationId NUMERIC(18) NOT NULL,
-    FOREIGN KEY (moduleId) REFERENCES concept(id),
-    FOREIGN KEY (refsetId) REFERENCES concept(id),
-    FOREIGN KEY (correlationId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+--EXECUTE drop_table('complexmap');
+--CREATE TABLE complexmap (
+--    id CHAR(52) NOT NULL PRIMARY KEY,
+--    effectiveTime DATE NOT NULL,
+--    active NUMERIC(1) NOT NULL,
+--    moduleId NUMERIC(18) NOT NULL,
+--    refsetId NUMERIC(18) NOT NULL,
+--    referencedComponentId NUMERIC(18) NOT NULL,
+--    mapGroup INT NOT NULL,
+--    mapPriority INT NOT NULL,
+--    mapRule VARCHAR2(4000),
+--    mapAdvice VARCHAR2(4000),
+--    mapTarget VARCHAR2(100),
+--    correlationId NUMERIC(18) NOT NULL,
+--    FOREIGN KEY (moduleId) REFERENCES concept(id),
+--    FOREIGN KEY (refsetId) REFERENCES concept(id),
+--    FOREIGN KEY (correlationId) REFERENCES concept(id)
+--)
+--PCTFREE 10 PCTUSED 80;
 
 
 -- Extended Map refset table.

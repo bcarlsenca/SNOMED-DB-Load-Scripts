@@ -10,8 +10,9 @@ PCTFREE 10 COMPUTE STATISTICS;
 CREATE INDEX x_attrvalue_refercompid ON attributevalue(referencedComponentId)
 PCTFREE 10 COMPUTE STATISTICS;
 
-CREATE INDEX x_complexmap_refercompid ON complexmap(referencedComponentId)
-PCTFREE 10 COMPUTE STATISTICS;
+-- No more complex map, ICD9CM maps deprecated
+--CREATE INDEX x_complexmap_refercompid ON complexmap(referencedComponentId)
+--PCTFREE 10 COMPUTE STATISTICS;
 
 CREATE INDEX x_extendedmap_refercompid ON extendedmap(referencedComponentId)
 PCTFREE 10 COMPUTE STATISTICS;

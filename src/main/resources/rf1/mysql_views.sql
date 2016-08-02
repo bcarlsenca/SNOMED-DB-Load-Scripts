@@ -78,30 +78,30 @@ LEFT OUTER JOIN conceptspreferredname cpn2 ON REFERENCEDID = cpn2.CONCEPTID;
 -- No views for CrossMapSets ICD9 table.
 -- No views for CrossMapTargets ICD9 table.
 
-
+-- No more CrossMapSets
 -- CrossMaps ICD9 table with names and IDs.
-DROP VIEW IF EXISTS crossmapsicd9withnameandid;
-CREATE VIEW crossmapsicd9withnameandid AS
-SELECT MAPSETID, MAPCONCEPTID, cpn.PREFERREDNAME MAPCONCEPTIDNAME,
-    MAPOPTION, MAPPRIORITY, MAPTARGETID, cmt.TARGETCODES, MAPRULE, MAPADVICE
-FROM crossmapsicd9 cm,
-    conceptspreferredname cpn,
-    crossmaptargetsicd9 cmt
-WHERE cm.MAPCONCEPTID = cpn.CONCEPTID
-AND cm.MAPTARGETID = cmt.TARGETID;
+-- DROP VIEW IF EXISTS crossmapsicd9withnameandid;
+-- CREATE VIEW crossmapsicd9withnameandid AS
+-- SELECT MAPSETID, MAPCONCEPTID, cpn.PREFERREDNAME MAPCONCEPTIDNAME,
+--    MAPOPTION, MAPPRIORITY, MAPTARGETID, cmt.TARGETCODES, MAPRULE, MAPADVICE
+-- FROM crossmapsicd9 cm,
+--    conceptspreferredname cpn,
+--    crossmaptargetsicd9 cmt
+-- WHERE cm.MAPCONCEPTID = cpn.CONCEPTID
+-- AND cm.MAPTARGETID = cmt.TARGETID;
 
 
 -- No views for CrossMapSets ICDO table.
 -- No views for CrossMapTargets ICDO table.
 
-
+---- No more CrossMapSets
 -- CrossMaps ICDO table with names.
-DROP VIEW IF EXISTS crossmapsicdowithnameandid;
-CREATE VIEW crossmapsicdowithnameandid AS
-SELECT MAPSETID, MAPCONCEPTID, cpn.PREFERREDNAME MAPCONCEPTIDNAME,
-    MAPOPTION, MAPPRIORITY, MAPTARGETID, cmt.TARGETCODES, MAPRULE, MAPADVICE
-FROM crossmapsicdo cm,
-    conceptspreferredname cpn,
-    crossmaptargetsicdo cmt
-WHERE cm.MAPCONCEPTID = cpn.CONCEPTID
-AND cm.MAPTARGETID = cmt.TARGETID;
+-- DROP VIEW IF EXISTS crossmapsicdowithnameandid;
+-- CREATE VIEW crossmapsicdowithnameandid AS
+-- SELECT MAPSETID, MAPCONCEPTID, cpn.PREFERREDNAME MAPCONCEPTIDNAME,
+--    MAPOPTION, MAPPRIORITY, MAPTARGETID, cmt.TARGETCODES, MAPRULE, MAPADVICE
+-- FROM crossmapsicdo cm,
+--    conceptspreferredname cpn,
+--    crossmaptargetsicdo cmt
+-- WHERE cm.MAPCONCEPTID = cpn.CONCEPTID
+-- AND cm.MAPTARGETID = cmt.TARGETID;
