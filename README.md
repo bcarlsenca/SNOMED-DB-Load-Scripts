@@ -7,8 +7,8 @@ http://www.westcoastinformatics.com/resources.html
 
 Minimum Specification
 ---------------------
-- MYSQL v5.5.x
-- Oracle v10.x
+- MYSQL v5.6.x
+- Oracle v11.x
 
 Installation
 ------------
