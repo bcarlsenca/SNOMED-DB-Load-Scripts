@@ -1,14 +1,14 @@
 SNOMED CT DATABASE LOAD SCRIPTS
 ===============================
 Scripts to create and populate a MYSQL or Oracle database with a SNOMED CT 
-terminology release in either RF1 or RF2.  To download a package built for 
-the latest US or International edition, visit
+terminology release in RF2 (as RF1 has been deprecated).  
+To download a package built for the latest US or International edition, visit
 http://www.westcoastinformatics.com/resources.html
 
 Minimum Specification
 ---------------------
-- MYSQL v5.6.x
-- Oracle v11.x
+- MYSQL v5.6.+
+- Oracle v11.+
 
 Installation
 ------------

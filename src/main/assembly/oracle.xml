@@ -9,6 +9,7 @@
       <directory>src/main/resources</directory>
       <outputDirectory>/</outputDirectory>
       <excludes>
+        <exclude>rf1/**</exclude>
         <exclude>**/*mysql*</exclude>
       </excludes>
       <filtered>true</filtered>

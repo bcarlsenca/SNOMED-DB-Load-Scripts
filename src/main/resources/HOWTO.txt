@@ -15,7 +15,6 @@ Installation
 
 4.  For the desired format, copy the appropriate installer scripts 
     to the release file directory as specified below:
-* For RF1, copy the installer scripts from rf1/ to the folder from step 2
 * For RF2, copy the installer scripts from rf2/ to the folder from step 2
 
 5.  Depending on your platform and database, choose the 

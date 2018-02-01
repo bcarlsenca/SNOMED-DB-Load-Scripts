@@ -12,7 +12,7 @@ Key Features
 ------------
 
 * Support for Oracle and MySQL
-* Support for RF1 and RF2 data formats
+* Support for RF2 data format
 * Denormalization of concept/description ids for contextualized lookup
 
 Developer Notes
