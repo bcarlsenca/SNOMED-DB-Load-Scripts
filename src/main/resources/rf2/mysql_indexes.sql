@@ -3,7 +3,7 @@
 
 CREATE INDEX x_identifier_refercompid ON identifier(referencedComponentId);
 
-CREATE INDEX x_assocrefer_refercompid ON associationreference(referencedComponentId);
+CREATE INDEX x_assoc_refercompid ON association(referencedComponentId);
 
 CREATE INDEX x_attrvalue_refercompid ON attributevalue(referencedComponentId);
 

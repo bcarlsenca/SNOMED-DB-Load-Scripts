@@ -4,7 +4,7 @@ SET ECHO ON
 CREATE INDEX x_identifier_refercompid ON identifier(referencedComponentId)
 PCTFREE 10 COMPUTE STATISTICS;
 
-CREATE INDEX x_assocrefer_refercompid ON associationreference(referencedComponentId)
+CREATE INDEX x_assoc_refercompid ON association(referencedComponentId)
 PCTFREE 10 COMPUTE STATISTICS;
 
 CREATE INDEX x_attrvalue_refercompid ON attributevalue(referencedComponentId)

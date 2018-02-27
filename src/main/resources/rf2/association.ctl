@@ -1,11 +1,11 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Refset/Content/der2_cRefset_AssociationReferenceSnapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
-badfile 'associationreference.bad'
-discardfile 'associationreference.dsc'
+infile 'Snapshot/Refset/Content/der2_cRefset_AssociationSnapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
+badfile 'association.bad'
+discardfile 'association.dsc'
 insert
-into table associationreference
+into table association
 reenable disabled_constraints
 fields terminated by X'09'
 trailing nullcols

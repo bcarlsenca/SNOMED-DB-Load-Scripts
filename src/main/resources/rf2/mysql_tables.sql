@@ -180,8 +180,8 @@ caseSignificanceId = @caseSignificanceId;
 
 
 -- Association Reference refset file.
-DROP TABLE IF EXISTS associationreference;
-CREATE TABLE associationreference (
+DROP TABLE IF EXISTS association;
+CREATE TABLE association (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
     active BOOLEAN NOT NULL,
@@ -194,7 +194,7 @@ CREATE TABLE associationreference (
     FOREIGN KEY (targetComponent) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_cRefset_AssociationReferenceSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE associationreference LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Content/der2_cRefset_AssociationSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE association LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@targetComponent)
 SET id = @id,
 effectiveTime = @effectiveTime,

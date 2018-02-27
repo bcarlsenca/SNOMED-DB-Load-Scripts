@@ -146,9 +146,9 @@ CREATE TABLE textdefinition (
 PCTFREE 10 PCTUSED 80;
 
 
--- Association Reference refset table.
-EXECUTE drop_table('associationreference');
-CREATE TABLE associationreference (
+-- Association refset table.
+EXECUTE drop_table('association');
+CREATE TABLE association (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
     active NUMERIC(1) NOT NULL,

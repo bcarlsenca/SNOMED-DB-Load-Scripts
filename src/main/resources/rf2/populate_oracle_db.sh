@@ -72,10 +72,10 @@ cat textdefinition.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Load association reference table data ... `/bin/date`" >> oracle.log 2>&1
-$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="associationreference.ctl" >> oracle.log 2>&1
+echo "    Load association table data ... `/bin/date`" >> oracle.log 2>&1
+$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="association.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
-cat associationreference.log >> oracle.log
+cat association.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then

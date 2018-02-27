@@ -55,10 +55,10 @@ echo     Load text definition table data >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type textdefinition.log >> oracle.log
 
-echo     Load association reference table data >> oracle.log 2>&1
-%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="associationreference.ctl" >> oracle.log 2>&1
+echo     Load association table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="association.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
-type associationreference.log >> oracle.log
+type association.log >> oracle.log
 
 echo     Load attribute value table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="attributevalue.ctl" >> oracle.log 2>&1

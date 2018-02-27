@@ -139,15 +139,15 @@ AND typeId = cpn3.conceptId
 AND caseSignificanceId = cpn4.conceptId;
 
 
--- Association Reference refset table.
-DROP VIEW IF EXISTS associationreferencewithnames;
-CREATE VIEW associationreferencewithnames AS
+-- Association refset table.
+DROP VIEW IF EXISTS associationwithnames;
+CREATE VIEW associationwithnames AS
 SELECT id, effectiveTime, active,
     moduleId, cpn1.preferredName moduleIdName,
     refsetId, cpn2.preferredName refsetIdName,
     referencedComponentId, cpn3.preferredName referencedComponentIdName,
     targetComponent, cpn4.preferredName targetComponentName
-from associationreference,
+from association,
     conceptpreferredname cpn1,
     conceptpreferredname cpn2,
     conceptpreferredname cpn3,
