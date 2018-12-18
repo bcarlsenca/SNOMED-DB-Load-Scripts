@@ -12,14 +12,13 @@ Minimum Specification
 
 Installation
 ------------
-[See the HOWTO.txt file](../master/HOWTO.txt "HOWTO.txt")
+See the HOWTO.txt file (at src/main/resources/HOWTO.txt)
 
 
 See Also
 --------
 * src/main/resources/LICENSE.txt
 * src/main/resources/README.txt
-* src/main/resources/HOWTO.txt
    
 TODO
 ----
