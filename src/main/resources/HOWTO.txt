@@ -2,29 +2,41 @@ This HOWTO describes how to use the installer scripts to load SNOMED into a data
 
 Installation
 ------------
-1.  Download the SNOMED CT Release files 
-    in ZIP format.  US Users can find the files here:
-  * SNOMED CT® US Edition Release Files: 
-    * https://www.nlm.nih.gov/healthit/snomedct/us_edition.html
-  * SNOMED CT® International Edition Release Files: 
-    * https://www.nlm.nih.gov/healthit/snomedct/international.html
+1.  Download the SNOMED CT Release files in ZIP format.  US Users can find the files here:
+	- SNOMED CT® US Edition Release Files: https://www.nlm.nih.gov/healthit/snomedct/us_edition.html
+	- SNOMED CT® International Edition Release Files: https://www.nlm.nih.gov/healthit/snomedct/international.html
 
-2.  Unzip the files into a folder
+2.  Open the desired zip file and extract the 'SNAPSHOT' folder into a temp-folder
 
-3.  Unzip the installer scripts to another folder
+3.  Update this project's pom.xml to contain the proper editionVersion for each profile ('INT' or 'US' for SNOMED-CORE or US-Edition respectively)
 
-4.  For the desired format, copy the appropriate installer scripts 
-    to the release file directory as specified below:
-* For RF2, copy the installer scripts from rf2/ to the folder from step 2
+4.  Build this project with maven (mvn install) referencing the appropriate profile
 
-5.  Depending on your platform and database, choose the 
-    appropriate "populate" script.  For example:
+5.  Depending on your database and edition, identify the appropriate target's zip file. For example:
+  * For MySql SNOMED-CORE, use the "snomed-db-scripts-mysql.20180731.zip" file
+  * For MySql US-Edition, use the "snomed-db-scripts-mysql.20180931.zip" file
+  * For Oracle SNOMED-CORE, use the "snomed-db-scripts-oracle.20180731.zip" file
+  * For Oracle US-Edition, use the "snomed-db-scripts-oracle.20180931.zip" file
+  Where the editionVersion for INT is 20180731 and the editionVersion for US is 20180931
+
+6. Open the desired zip file and extract the contents of the 'rf2' folder into the same temp-folder temp-folder
+
+7. Validate the temp-folder has the proper content:
+  * The 'Snapshot' folder from Step #2
+  * The contents of the 'rf2' folder from Step #6
+
+8.  In a text editor, open the temp-folder's appropriate "populate" script in a text editor as defined by your platform and database.  For example:
   * For MySQL on Windows, use the "populate_mysql_db.bat" script
   * For Oracle on Windows, use the "populate_oracle_db.bat" script
   * For MySQL on Linux/Unix/MacOS, use the "populate_mysql_db.sh" script
   * For Oracle on Linux/Unix/MacOS, use the "populate_oracle_db.sh" script
-  
-6. Configure the settings at the top of the script for your environment
+ 
+9. Configure the settings at the top of the "populate" script for your environment
+	- user (with your database's username)
+	- password (with your database's password)
+	- db_name (with the name of the database schema you wish to populate)
+	
+10. Create the database schema as defined in step #9
 
-7. Execute the script
+11. Execute the "populate" script 
   * Note: a complete log file will appear as "mysql.log" or "oracle.log"
