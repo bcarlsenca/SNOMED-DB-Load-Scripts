@@ -2,41 +2,44 @@ This HOWTO describes how to use the installer scripts to load SNOMED into a data
 
 Installation
 ------------
-1.  Download the SNOMED CT Release files in ZIP format.  US Users can find the files here:
-	- SNOMED CT® US Edition Release Files: https://www.nlm.nih.gov/healthit/snomedct/us_edition.html
-	- SNOMED CT® International Edition Release Files: https://www.nlm.nih.gov/healthit/snomedct/international.html
+1.  Download the database loader zip file from the http://www.westcoastinformatics.com/resources.html website. Select the appropriate database-version pair (i.e. oracle-US Edition). Depending on your database and edition, identify the appropriate target's zip file.
+	For example:
+		* For MySql SNOMED-CORE, use the "snomed-db-scripts-mysql.20180731.zip" file
+		* For MySql US-Edition, use the "snomed-db-scripts-mysql.20180931.zip" file
+		* For Oracle SNOMED-CORE, use the "snomed-db-scripts-oracle.20180731.zip" file
+		* For Oracle US-Edition, use the "snomed-db-scripts-oracle.20180931.zip" file
 
-2.  Open the desired zip file and extract the 'SNAPSHOT' folder into a temp-folder
+2.  Unzip the contents of the zip file into a 'data' folder
 
-3.  Update this project's pom.xml to contain the proper editionVersion for each profile ('INT' or 'US' for SNOMED-CORE or US-Edition respectively)
+3.  Download the SNOMED CT Release files in ZIP format. US Users can find the files here: 
+	* SNOMED CT® US Edition Release Files: https://www.nlm.nih.gov/healthit/snomedct/us_edition.html
+	* SNOMED CT® International Edition Release Files: https://www.nlm.nih.gov/healthit/snomedct/international.html
 
-4.  Build this project with maven (mvn install) referencing the appropriate profile
+4.  Open the desired zip file and extract the 'Snapshot' folder into the 'data/rf2' folder. Once completed:
+	* The 'data' folder's content will include:
+		- 'rf2' folder
+		- HOWTO.txt
+		- LICENSE.txt
+		- README.txt
+	* The 'data/rf2' folder's contents will include:
+		- 'Snapshot' folder
+		- *.sql files
+		- *.ctl files (for oracle only)
+		- one *.bat file
+		- one *.sh file
 
-5.  Depending on your database and edition, identify the appropriate target's zip file. For example:
-  * For MySql SNOMED-CORE, use the "snomed-db-scripts-mysql.20180731.zip" file
-  * For MySql US-Edition, use the "snomed-db-scripts-mysql.20180931.zip" file
-  * For Oracle SNOMED-CORE, use the "snomed-db-scripts-oracle.20180731.zip" file
-  * For Oracle US-Edition, use the "snomed-db-scripts-oracle.20180931.zip" file
-  Where the editionVersion for INT is 20180731 and the editionVersion for US is 20180931
+5.	In a text editor, open the temp-folder's appropriate "populate" script in a text editor as defined by your platform and database. 
+	* For example:
+		- For MySQL on Windows, use the "populate_mysql_db.bat" script
+		- For Oracle on Windows, use the "populate_oracle_db.bat" script
+		- For MySQL on Linux/Unix/MacOS, use the "populate_mysql_db.sh" script
+		- For Oracle on Linux/Unix/MacOS, use the "populate_oracle_db.sh" script
+	* Configure settings at the top of the "populate" script for your environment
+		- user  is your database's username
+		- password is your database's password
+		- tns_name or db_name is the database's schema which is to be popluated
 
-6. Open the desired zip file and extract the contents of the 'rf2' folder into the same temp-folder temp-folder
+6.  Create the database schema as defined in step #5.b.iii
 
-7. Validate the temp-folder has the proper content:
-  * The 'Snapshot' folder from Step #2
-  * The contents of the 'rf2' folder from Step #6
-
-8.  In a text editor, open the temp-folder's appropriate "populate" script in a text editor as defined by your platform and database.  For example:
-  * For MySQL on Windows, use the "populate_mysql_db.bat" script
-  * For Oracle on Windows, use the "populate_oracle_db.bat" script
-  * For MySQL on Linux/Unix/MacOS, use the "populate_mysql_db.sh" script
-  * For Oracle on Linux/Unix/MacOS, use the "populate_oracle_db.sh" script
- 
-9. Configure the settings at the top of the "populate" script for your environment
-	- user (with your database's username)
-	- password (with your database's password)
-	- db_name (with the name of the database schema you wish to populate)
-	
-10. Create the database schema as defined in step #9
-
-11. Execute the "populate" script 
-  * Note: a complete log file will appear as "mysql.log" or "oracle.log"
+7.	Execute the "populate" script
+	* Note: a complete log file will appear as "mysql.log" or "oracle.log"
