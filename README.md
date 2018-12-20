@@ -12,13 +12,15 @@ Minimum Specification
 
 Installation
 ------------
-See the HOWTO.txt file (at src/main/resources/HOWTO.txt)
+See https://wiki.terminology.tools/display/IHTSDO/SNOMED+Database+Load+Scripts to understand how to prepare the files for publication.
+See HOWTO.txt file to understand how to load the rf2 files into the database
 
 
 See Also
 --------
 * src/main/resources/LICENSE.txt
 * src/main/resources/README.txt
+* src/main/resources/HOWTO.txt
    
 TODO
 ----
