@@ -12,7 +12,6 @@ Minimum Specification
 
 Installation
 ------------
-* See https://wiki.terminology.tools/display/IHTSDO/SNOMED+Database+Load+Scripts to understand how to prepare the files for publication.
 * See HOWTO.txt file to understand how to load the rf2 files into the database
 
 
