@@ -1,5 +1,3 @@
--- Show warnings after every statement.
-\W
 
 -- Concept Preferred Name view, used by other views.
 -- 900000000000013009 = Synonym description type
@@ -7,15 +5,15 @@
 -- 900000000000509007 = United States of America English language reference set
 DROP VIEW IF EXISTS conceptpreferredname;
 CREATE VIEW conceptpreferredname AS
-SELECT c.id conceptId, IFNULL(d.term, "no active preferred synonym") preferredName, d.id descriptionId
+SELECT c.id conceptId, NULLIF(d.term, 'no active preferred synonym') preferredName, d.id descriptionId
 FROM concept c
 LEFT OUTER JOIN description d
 ON c.id = d.conceptId
-AND d.active = 1
+AND d.active = TRUE
 AND d.typeId = 900000000000013009
 LEFT OUTER JOIN language l
 ON d.id = l.referencedComponentId
-AND l.active = 1
+AND l.active = TRUE
 AND l.acceptabilityId = 900000000000548007
 AND l.refSetId = 900000000000509007
 WHERE (l.acceptabilityId IS NOT null OR d.TERM IS null);
@@ -180,7 +178,7 @@ CREATE VIEW attributevaluewithnames AS
 SELECT id, effectiveTime, active,
     moduleId, cpn1.preferredName moduleIdName,
     refsetId, cpn2.preferredName refsetIdName,
-    referencedComponentId, REPLACE(cpn3.preferredName, "no active preferred synonym", "no such concept") referencedComponentIdName,
+    referencedComponentId, REPLACE(cpn3.preferredName, 'no active preferred synonym', 'no such concept') referencedComponentIdName,
     valueId, cpn4.preferredName valueIdName
 FROM attributevalue
 LEFT OUTER JOIN conceptpreferredname cpn3 ON referencedComponentId = cpn3.conceptId

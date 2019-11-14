@@ -4,9 +4,9 @@
 # Database connection parameters
 # Please edit these variables to reflect your environment
 #   - Tested on Windows with "Git Bash" as a shell
-#   - and MYSQL_HOME="/c/Program Files/MySQL/MySQL Server 5.6"
+#   - and mysql in the path (use the alias if needed)
 #
-MYSQL_HOME=/usr
+# alias mysql="C:/Program Files/MySQL/MySQL Server 5.6/bin/mysql"
 user=root
 password=admin
 db_name=snomed
@@ -29,18 +29,18 @@ if [ "${password}" != "" ]; then
 fi
 
 echo "    Create and load tables ... `/bin/date`" >> mysql.log 2>&1
-"$MYSQL_HOME/bin/mysql" -vvv -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1
+mysql -vvv -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 
 if [ $ef -ne 1 ]; then
 echo "    Create indexes ... `/bin/date`" >> mysql.log 2>&1
-"$MYSQL_HOME/bin/mysql" -vvv -u $user $password --local-infile $db_name < mysql_indexes.sql >> mysql.log 2>&1
+mysql -vvv -u $user $password --local-infile $db_name < mysql_indexes.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
 if [ $ef -ne 1 ]; then
 echo "    Create views ... `/bin/date`" >> mysql.log 2>&1
-"$MYSQL_HOME/bin/mysql" -vvv -u $user $password --local-infile $db_name < mysql_views.sql >> mysql.log 2>&1
+mysql -vvv -u $user $password --local-infile $db_name < mysql_views.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 

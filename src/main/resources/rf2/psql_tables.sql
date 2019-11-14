@@ -1,91 +1,60 @@
-WHENEVER SQLERROR EXIT -1
-SET ECHO ON
+\
 
-
--- Session settings.
-ALTER SESSION SET NLS_LENGTH_SEMANTICS='CHAR';
-
-
--- Define helper procedure to drop tables.
-BEGIN
-    EXECUTE IMMEDIATE 'DROP PROCEDURE drop_table';
-EXCEPTION
-    WHEN OTHERS THEN
-        -- If procedure doesn't exist, it can't be dropped,
-        -- so an exception will be thrown.  Ignore it.
-        IF SQLCODE != -4043 THEN
-            RAISE;
-        END IF;
-END;
-/
-CREATE PROCEDURE drop_table (table_name IN VARCHAR2) IS
-BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || table_name || ' CASCADE CONSTRAINTS';
-EXCEPTION
-    -- If table doesn't exist, it can't be dropped,
-    -- so an exception will be thrown.  Ignore it.
-    WHEN OTHERS THEN
-        IF SQLCODE != -942 THEN
-            RAISE;
-        END IF;
-END;
-/
-
-
--- Concept table.
-EXECUTE drop_table('concept');
+-- Concept file.
+DROP TABLE IF EXISTS concept CASCADE;
 CREATE TABLE concept (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     definitionStatusId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (definitionStatusId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
 
+\copy concept FROM 'Snapshot/Terminology/sct2_Concept_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
--- Description table.
-EXECUTE drop_table('description');
+-- Description file.
+DROP TABLE IF EXISTS description CASCADE;
 CREATE TABLE description (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     conceptId NUMERIC(18) NOT NULL,
     languageCode CHAR(2) NOT NULL,
     typeId NUMERIC(18) NOT NULL,
-    term VARCHAR2(255) NOT NULL,
+    term VARCHAR(255) NOT NULL,
     caseSignificanceId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (conceptId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
     FOREIGN KEY (caseSignificanceId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
 
+\copy description FROM 'Snapshot/Terminology/sct2_Description_Snapshot-en_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
--- Identifier table.
-EXECUTE drop_table('identifier');
+-- Identifier file.
+DROP TABLE IF EXISTS identifier CASCADE;
 CREATE TABLE identifier (
     identifierSchemeId NUMERIC(18) NOT NULL,
-    alternateIdentifier VARCHAR2(255) NOT NULL,
+    alternateIdentifier VARCHAR(255) NOT NULL,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy identifier FROM 'Snapshot/Terminology/sct2_Identifier_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Relationship table.
-EXECUTE drop_table('relationship');
+-- Relationship file.
+DROP TABLE IF EXISTS relationship CASCADE;
 CREATE TABLE relationship (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     sourceId NUMERIC(18) NOT NULL,
     destinationId NUMERIC(18) NOT NULL,
@@ -99,46 +68,35 @@ CREATE TABLE relationship (
     FOREIGN KEY (typeId) REFERENCES concept(id),
     FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
     FOREIGN KEY (modifierId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
 
-DROP TABLE IF EXISTS owlexpression;
-CREATE TABLE owlexpression (
-    id NUMERIC(18) UNSIGNED NOT NULL PRIMARY KEY,
-    effectiveTime DATE NOT NULL,
-    active BOOLEAN NOT NULL,
-    moduleId NUMERIC(18) UNSIGNED NOT NULL,
-    refsetId NUMERIC(18) UNSIGNED NOT NULL,
-    referencedComponentId NUMERIC(18) UNSIGNED NOT NULL,
-    owlExpression VARCHAR(10000) NOT NULL,
-    FOREIGN KEY (moduleId) REFERENCES concept(id),
-    FOREIGN KEY (sourceId) REFERENCES concept(id),
-    FOREIGN KEY (refsetId) REFERENCES concept(id),
-    FOREIGN KEY (referencedComponentId) REFERENCES concept(id)
-) CHARACTER SET utf8;
+\copy relationship FROM 'Snapshot/Terminology/sct2_Relationship_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
--- OWL Expression table.
-EXECUTE drop_table('owlexpression');
+
+-- OWL Expression file.
+DROP TABLE IF EXISTS owlexpression CASCADE;
 CREATE TABLE owlexpression (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
-    owlExpression VARCHAR2(4000) NOT NULL,
+    owlExpression VARCHAR(10000) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (referencedComponentId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
 
--- Stated Relationship table.
-EXECUTE drop_table('statedrelationship');
+\copy owlexpression FROM 'Snapshot/Terminology/sct2_sRefset_OWLExpressionSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
+
+
+-- Stated Relationship file.
+DROP TABLE IF EXISTS statedrelationship CASCADE;
 CREATE TABLE statedrelationship (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     sourceId NUMERIC(18) NOT NULL,
     destinationId NUMERIC(18) NOT NULL,
@@ -152,53 +110,56 @@ CREATE TABLE statedrelationship (
     FOREIGN KEY (typeId) REFERENCES concept(id),
     FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
     FOREIGN KEY (modifierId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy statedrelationship FROM 'Snapshot/Terminology/sct2_StatedRelationship_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Text Definition table.
-EXECUTE drop_table('textdefinition');
+-- Text Definition file.
+DROP TABLE IF EXISTS textdefinition CASCADE;
 CREATE TABLE textdefinition (
     id NUMERIC(18) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     conceptId NUMERIC(18) NOT NULL,
     languageCode CHAR(2) NOT NULL,
     typeId NUMERIC(18) NOT NULL,
-    term VARCHAR2(2048) NOT NULL,
+    term VARCHAR(2048) NOT NULL,
     caseSignificanceId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (conceptId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
-    FOREIGN KEY (caseSignificanceId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+    FOREIGN KEY (caseSignificanceId) REFERENCES concept(id) 
+);
+
+\copy textdefinition FROM 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Association refset table.
-EXECUTE drop_table('association');
+-- Association Reference refset file.
+DROP TABLE IF EXISTS association CASCADE;
 CREATE TABLE association (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
     targetComponent NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
-    FOREIGN KEY (refsetId) REFERENCES concept(id)
-    -- TODO: FOREIGN KEY targetComponent?
-)
-PCTFREE 10 PCTUSED 80;
+    FOREIGN KEY (refsetId) REFERENCES concept(id),
+    FOREIGN KEY (targetComponent) REFERENCES concept(id)
+);
+
+\copy association FROM 'Snapshot/Refset/Content/der2_cRefset_AssociationSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Attribute Value refset table.
-EXECUTE drop_table('attributevalue');
+-- Attribute Value refset file.
+DROP TABLE IF EXISTS attributevalue CASCADE;
 CREATE TABLE attributevalue (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
@@ -206,93 +167,112 @@ CREATE TABLE attributevalue (
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (valueId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy attributevalue FROM 'Snapshot/Refset/Content/der2_cRefset_AttributeValueSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Simple refset table.
-EXECUTE drop_table('simple');
+-- Simple refset file.
+DROP TABLE IF EXISTS simple CASCADE;
 CREATE TABLE simple (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy simple FROM 'Snapshot/Refset/Content/der2_Refset_SimpleSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
+
 
 -- No more complex map, ICD9CM maps deprecated
--- Complex Map refset table.
---EXECUTE drop_table('complexmap');
---CREATE TABLE complexmap (
+-- Complex Map refset file.
+-- DROP TABLE IF EXISTS complexmap CASCADE;
+-- CREATE TABLE complexmap (
 --    id CHAR(52) NOT NULL PRIMARY KEY,
 --    effectiveTime DATE NOT NULL,
---    active NUMERIC(1) NOT NULL,
+--    active BOOLEAN NOT NULL,
 --    moduleId NUMERIC(18) NOT NULL,
 --    refsetId NUMERIC(18) NOT NULL,
 --    referencedComponentId NUMERIC(18) NOT NULL,
 --    mapGroup INT NOT NULL,
 --    mapPriority INT NOT NULL,
---    mapRule VARCHAR2(4000),
---    mapAdvice VARCHAR2(4000),
---    mapTarget VARCHAR2(100),
+--    mapRule VARCHAR(4000) NOT NULL,
+--    mapAdvice VARCHAR(4000) NOT NULL,
+--    mapTarget VARCHAR(100) NOT NULL,
 --    correlationId NUMERIC(18) NOT NULL,
 --    FOREIGN KEY (moduleId) REFERENCES concept(id),
 --    FOREIGN KEY (refsetId) REFERENCES concept(id),
 --    FOREIGN KEY (correlationId) REFERENCES concept(id)
---)
---PCTFREE 10 PCTUSED 80;
+-- );
+--
+-- LOAD DATA LOCAL INFILE 'Snapshot/Refset/Map/der2_iissscRefset_ComplexMapSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE complexmap LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+-- (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mapGroup,@mapPriority,@mapRule,@mapAdvice,@mapTarget,@correlationId)
+-- SET id = @id,
+-- effectiveTime = @effectiveTime,
+-- active = @active,
+-- moduleId = @moduleId,
+-- refsetId = @refsetId,
+-- referencedComponentId = @referencedComponentId,
+-- mapGroup = @mapGroup,
+-- mapPriority = @mapPriority,
+-- mapRule = @mapRule,
+-- mapAdvice = @mapAdvice,
+-- mapTarget = @mapTarget,
+-- correlationId = @correlationId;
 
 
--- Extended Map refset table.
-EXECUTE drop_table('extendedmap');
+-- Extended Map refset file.
+DROP TABLE IF EXISTS extendedmap CASCADE;
 CREATE TABLE extendedmap (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
     mapGroup INT NOT NULL,
     mapPriority INT NOT NULL,
-    mapRule VARCHAR2(4000),
-    mapAdvice VARCHAR2(4000),
-    mapTarget VARCHAR2(100),
+    mapRule VARCHAR(4000) NOT NULL,
+    mapAdvice VARCHAR(4000) NOT NULL,
+    mapTarget VARCHAR(100),
     correlationId NUMERIC(18) NOT NULL,
     mapCategoryId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (correlationId) REFERENCES concept(id),
     FOREIGN KEY (mapCategoryId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy extendedmap FROM 'Snapshot/Refset/Map/der2_iisssccRefset_ExtendedMapSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Simple Map refset table.
-EXECUTE drop_table('simplemap');
+-- Simple Map refset file.
+DROP TABLE IF EXISTS simplemap CASCADE;
 CREATE TABLE simplemap (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
-    mapTarget VARCHAR2(100) NOT NULL,
+    mapTarget VARCHAR(100) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy simplemap FROM 'Snapshot/Refset/Map/der2_sRefset_SimpleMapSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Lanuage refset table.
-EXECUTE drop_table('language');
+-- Language refset file.
+DROP TABLE IF EXISTS language CASCADE;
 CREATE TABLE language (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
@@ -300,16 +280,17 @@ CREATE TABLE language (
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (acceptabilityId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy language FROM 'Snapshot/Refset/Language/der2_cRefset_LanguageSnapshot-en_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Refset Descriptor refset table.
-EXECUTE drop_table('refsetdescriptor');
+-- Refset Descriptor refset file.
+DROP TABLE IF EXISTS refsetdescriptor CASCADE;
 CREATE TABLE refsetdescriptor (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
@@ -318,16 +299,17 @@ CREATE TABLE refsetdescriptor (
     attributeOrder NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy refsetdescriptor FROM 'Snapshot/Refset/Metadata/der2_cciRefset_RefsetDescriptorSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Description Type refset table.
-EXECUTE drop_table('descriptiontype');
+-- Description Type refset file.
+DROP TABLE IF EXISTS descriptiontype CASCADE;
 CREATE TABLE descriptiontype (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
@@ -335,23 +317,24 @@ CREATE TABLE descriptiontype (
     descriptionLength INT NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy descriptiontype FROM 'Snapshot/Refset/Metadata/der2_ciRefset_DescriptionTypeSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
 -- MRCM Attribute Domain refset file.
-EXECUTE drop_table('mrcmattributedomain');
+DROP TABLE IF EXISTS mrcmattributedomain CASCADE;
 CREATE TABLE mrcmattributedomain (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
     domainId NUMERIC(18) NOT NULL,
     grouped INT NOT NULL,
-    attributeCardinality VARCHAR2(20) NOT NULL,
-    attributeInGroupCardinality VARCHAR2(20) NOT NULL,
+    attributeCardinality VARCHAR(20) NOT NULL,
+    attributeInGroupCardinality VARCHAR(20) NOT NULL,
     ruleStrengthId NUMERIC(18) NOT NULL,
     contentTypeId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
@@ -359,16 +342,17 @@ CREATE TABLE mrcmattributedomain (
     FOREIGN KEY (domainId) REFERENCES concept(id),
     FOREIGN KEY (ruleStrengthId) REFERENCES concept(id),
     FOREIGN KEY (contentTypeId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy mrcmattributedomain FROM 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
 -- MRCM Module Scope refset file.
-EXECUTE drop_table('mrcmmodulescope');
+DROP TABLE IF EXISTS mrcmmodulescope CASCADE;
 CREATE TABLE mrcmmodulescope (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
@@ -376,59 +360,62 @@ CREATE TABLE mrcmmodulescope (
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (mrcmRuleRefsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy mrcmmodulescope FROM 'Snapshot/Refset/Metadata/der2_cRefset_MRCMModuleScopeSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
 -- MRCM Attribute Range refset file.
-EXECUTE drop_table('mrcmattributerange');
+DROP TABLE IF EXISTS mrcmattributerange CASCADE;
 CREATE TABLE mrcmattributerange (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
-    rangeConstraint VARCHAR2(4000) NOT NULL,
-    attributeRule VARCHAR2(4000) NOT NULL,
+    rangeConstraint VARCHAR(4000) NOT NULL,
+    attributeRule VARCHAR(4000) NOT NULL,
     ruleStrengthId NUMERIC(18) NOT NULL,
     contentTypeId NUMERIC(18) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (ruleStrengthId) REFERENCES concept(id),
     FOREIGN KEY (contentTypeId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy mrcmattributerange FROM 'Snapshot/Refset/Metadata/der2_ssccRefset_MRCMAttributeRangeSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
 -- MRCM Domain refset file.
-EXECUTE drop_table('mrcmdomain');
+DROP TABLE IF EXISTS mrcmdomain CASCADE;
 CREATE TABLE mrcmdomain (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
-    domainConstraint VARCHAR2(4000) NOT NULL,
-    parentDomain VARCHAR2(4000),
-    proximalPrimitiveConstraint VARCHAR2(4000) NOT NULL,
-    proximalPrimitiveRefinement VARCHAR2(4000),
-    domainTemplateForPrecoordination VARCHAR2(4000) NOT NULL,
-    domainTemplateForPostcoordination VARCHAR2(4000) NOT NULL,
-    guideURL VARCHAR2(4000) NOT NULL,
+    domainConstraint VARCHAR(4000) NOT NULL,
+    parentDomain VARCHAR(4000),
+    proximalPrimitiveConstraint VARCHAR(4000) NOT NULL,
+    proximalPrimitiveRefinement VARCHAR(4000),
+    domainTemplateForPrecoordination VARCHAR(40000) NOT NULL,
+    domainTemplateForPostcoordination VARCHAR(40000) NOT NULL,
+    guideURL VARCHAR(4000) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
+
+\copy mrcmdomain FROM 'Snapshot/Refset/Metadata/der2_sssssssRefset_MRCMDomainSnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
--- Module Dependency refset table.
-EXECUTE drop_table('moduledependency');
+-- Module Dependency refset file.
+DROP TABLE IF EXISTS moduledependency CASCADE;
 CREATE TABLE moduledependency (
     id CHAR(52) NOT NULL PRIMARY KEY,
     effectiveTime DATE NOT NULL,
-    active NUMERIC(1) NOT NULL,
+    active BOOLEAN NOT NULL,
     moduleId NUMERIC(18) NOT NULL,
     refsetId NUMERIC(18) NOT NULL,
     referencedComponentId NUMERIC(18) NOT NULL,
@@ -436,9 +423,6 @@ CREATE TABLE moduledependency (
     targetEffectiveTime DATE NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)
-)
-PCTFREE 10 PCTUSED 80;
+);
 
-
--- Clean up helper procedures.
-DROP PROCEDURE drop_table;
+\copy moduledependency FROM 'Snapshot/Refset/Metadata/der2_ssRefset_ModuleDependencySnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;

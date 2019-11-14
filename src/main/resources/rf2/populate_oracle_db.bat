@@ -45,6 +45,11 @@ echo     Load relationship table data >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type relationship.log >> oracle.log
 
+echo     Load owl expression table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="owlexpression.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type owlexpression.log >> oracle.log
+
 echo     Load stated relationship table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="statedrelationship.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
@@ -100,6 +105,26 @@ echo     Load description type table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="descriptiontype.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type descriptiontype.log >> oracle.log
+
+echo     Load mrcm attribute domain table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="mrcmattributedomain.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type mrcmattributedomain.log >> oracle.log
+
+echo     Load mrcm module scope table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="mrcmmodulescope.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type mrcmmodulescope.log >> oracle.log
+
+echo     Load mrcm attribute range table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="mrcmattributerange.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type mrcmattributerange.log >> oracle.log
+
+echo     Load mrcm domain table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="mrcmdomain.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type mrcmdomain.log >> oracle.log
 
 echo     Load module dependency table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="moduledependency.ctl" >> oracle.log 2>&1

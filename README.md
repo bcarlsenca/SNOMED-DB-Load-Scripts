@@ -1,7 +1,8 @@
 SNOMED CT DATABASE LOAD SCRIPTS
 ===============================
-Scripts to create and populate a MYSQL or Oracle database with a SNOMED CT 
-terminology release in RF2 (as RF1 has been deprecated).  
+Scripts to create and populate a MySQL, Postgres, or Oracle database with a 
+SNOMED CT terminology release in RF2.
+
 To download a package built for the latest US or International edition, visit
 http://www.westcoastinformatics.com/resources.html
 
@@ -9,6 +10,7 @@ Minimum Specification
 ---------------------
 - MYSQL v5.6.+
 - Oracle v11.+
+- Postgres 9.+
 
 Installation
 ------------
@@ -26,3 +28,4 @@ TODO
 Next Steps:
 * Better automated QA to validate file sizes against table sizes
 * Better automated QA to validate views have same row count as driving tables
+* Support additional SNOMED files

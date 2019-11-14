@@ -2,7 +2,7 @@
 :: Database connection parameters
 :: Please edit these variables to reflect your environment
 ::
-set MYSQL_HOME=C:\Program Files\MySQL\MySQL Server 5.6
+set mysql=C:/Program Files/MySQL/MySQL Server 5.6/bin/mysql.exe
 set user=root
 set password=admin
 set db_name=snomed
@@ -20,17 +20,17 @@ echo db_name =    %db_name% >> mysql.log 2>&1
 set error=0
 
 echo     Create and load tables >> mysql.log 2>&1
-"%MYSQL_HOME%\bin\mysql" -vvv -u %user% -p%password% --local-infile=1 %db_name%  < mysql_tables.sql >> mysql.log 2>&1
+"%mysql%" -vvv -u %user% -p%password% --local-infile=1 %db_name%  < mysql_tables.sql >> mysql.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1
 goto trailer)
 
 echo     Create indexes >> mysql.log 2>&1
-"%MYSQL_HOME%\bin\mysql" -vvv -u %user% -p%password% --local-infile=1 %db_name% < mysql_indexes.sql >> mysql.log 2>&1
+"%mysql%" -vvv -u %user% -p%password% --local-infile=1 %db_name% < mysql_indexes.sql >> mysql.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1
 goto trailer)
 
 echo     Create views >> mysql.log 2>&1
-"%MYSQL_HOME%\bin\mysql" -vvv -u %user% -p%password% --local-infile=1 %db_name% < mysql_views.sql >> mysql.log 2>&1
+"%mysql%" -vvv -u %user% -p%password% --local-infile=1 %db_name% < mysql_views.sql >> mysql.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1
 goto trailer)
 

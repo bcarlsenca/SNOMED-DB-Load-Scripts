@@ -1,5 +1,5 @@
 <assembly>
-  <id>oracle</id>
+  <id>mysql</id>
   <baseDirectory>/</baseDirectory>
   <formats>
     <format>zip</format>
@@ -10,9 +10,9 @@
       <outputDirectory>/</outputDirectory>
       <excludes>
         <exclude>rf1/**</exclude>
+        <exclude>**/*oracle*</exclude>
+        <exclude>**/*.ctl</exclude>
         <exclude>**/*mysql*</exclude>
-        <exclude>**/*postgres*</exclude>
-        <exclude>**/*psql*</exclude>
       </excludes>
       <filtered>true</filtered>
       <lineEnding>keep</lineEnding>

@@ -1,4 +1,4 @@
-Welcome to SNOMED CT Oracle and MySQL Database Load Scripts
+Welcome to SNOMED CT MySQL, Postgres, and Oracle Database Load Scripts
 http://www.wcinformatics.com/resources.html
 
 Go to the above link for documentation, and additional downloads.
@@ -11,7 +11,7 @@ Important Notes
 Key Features
 ------------
 
-* Support for Oracle and MySQL
+* Support for Oracle, Postgres, and MySQL
 * Support for RF2 data format
 * Denormalization of concept/description ids for contextualized lookup
 

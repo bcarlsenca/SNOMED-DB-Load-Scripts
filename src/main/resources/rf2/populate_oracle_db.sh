@@ -58,6 +58,13 @@ cat relationship.log >> oracle.log
 fi
 
 if [ $ef -ne 1 ]; then
+echo "    Load owl expression table data ... `/bin/date`" >> oracle.log 2>&1
+$ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="owlexpression.ctl" >> oracle.log 2>&1
+if [ $? -ne 0 ]; then ef=1; fi
+cat owlexpression.log >> oracle.log
+fi
+
+if [ $ef -ne 1 ]; then
 echo "    Load stated relationship table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="statedrelationship.ctl" >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi

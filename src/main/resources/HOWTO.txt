@@ -4,10 +4,12 @@ Installation
 ------------
 1.  Download the database loader zip file from the http://www.westcoastinformatics.com/resources.html website. Select the appropriate database-version pair (i.e. oracle-US Edition). Depending on your database and edition, identify the appropriate target's zip file.
 	For example:
-		* For MySql SNOMED-CORE, use the "snomed-db-scripts-mysql.20190131.zip" file
-		* For MySql US-Edition, use the "snomed-db-scripts-mysql.20190301.zip" file
-		* For Oracle SNOMED-CORE, use the "snomed-db-scripts-oracle.20190131.zip" file
-		* For Oracle US-Edition, use the "snomed-db-scripts-oracle.20190301.zip" file
+		* For MySQL SNOMED-CORE, use the "snomed-db-scripts-mysql.20190731.zip" file
+		* For MySQL US-Edition, use the "snomed-db-scripts-mysql.20190901.zip" file
+		* For Postgres SNOMED-CORE, use the "snomed-db-scripts-postgres.20190731.zip" file
+		* For Postgres US-Edition, use the "snomed-db-scripts-postgres.20190901.zip" file
+		* For Oracle SNOMED-CORE, use the "snomed-db-scripts-oracle.20190731.zip" file
+		* For Oracle US-Edition, use the "snomed-db-scripts-oracle.20190901.zip" file
 
 2.  Unzip the contents of the zip file into a 'data' folder
 
@@ -31,8 +33,10 @@ Installation
 5.	In a text editor, open the temp-folder's appropriate "populate" script in a text editor as defined by your platform and database. 
 	* For example:
 		- For MySQL on Windows, use the "populate_mysql_db.bat" script
+		- For Postgres on Windows, use the "populate_postgres_db.bat" script
 		- For Oracle on Windows, use the "populate_oracle_db.bat" script
 		- For MySQL on Linux/Unix/MacOS, use the "populate_mysql_db.sh" script
+		- For Postgres on Linux/Unix/MacOS, use the "populate_postgres_db.sh" script
 		- For Oracle on Linux/Unix/MacOS, use the "populate_oracle_db.sh" script
 	* Configure settings at the top of the "populate" script for your environment
 		- user  is your database's username
@@ -41,5 +45,8 @@ Installation
 
 6.  Create the database schema as defined in step #5.b.iii
 
+    * NOTE: postgres supports only db-level character encoding, so make sure to create your database using: WITH ENCODING 'UTF-8'
+
+
 7.	Execute the "populate" script
-	* Note: a complete log file will appear as "mysql.log" or "oracle.log"
+	* Note: a complete log file will appear as "mysql.log", "postgres.log", or "oracle.log"

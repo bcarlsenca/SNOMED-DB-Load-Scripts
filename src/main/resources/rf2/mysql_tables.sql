@@ -113,6 +113,31 @@ typeId = @typeId,
 characteristicTypeId = @characteristicTypeId,
 modifierId = @modifierId;
 
+-- OWL Expression file.
+DROP TABLE IF EXISTS owlexpression;
+CREATE TABLE owlexpression (
+    id CHAR(52) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(18) UNSIGNED NOT NULL,
+    refsetId NUMERIC(18) UNSIGNED NOT NULL,
+    referencedComponentId NUMERIC(18) UNSIGNED NOT NULL,
+    owlExpression VARCHAR(10000) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (refsetId) REFERENCES concept(id),
+    FOREIGN KEY (referencedComponentId) REFERENCES concept(id)
+) CHARACTER SET utf8;
+
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_sRefset_OWLExpressionSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE statedrelationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@owlExpression)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+refsetId = @refsetId,
+referencedComponentId = @referencedComponentId,
+owlExpression = @owlExpression;
+
 
 -- Stated Relationship file.
 DROP TABLE IF EXISTS statedrelationship;
@@ -435,6 +460,139 @@ refsetId = @refsetId,
 referencedComponentId = @referencedComponentId,
 descriptionFormat = @descriptionFormat,
 descriptionLength = @descriptionLength;
+
+
+-- MRCM Attribute Domain refset file.
+DROP TABLE IF EXISTS mrcmattributedomain;
+CREATE TABLE mrcmattributedomain (
+    id CHAR(52) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(18) NOT NULL,
+    refsetId NUMERIC(18) NOT NULL,
+    referencedComponentId NUMERIC(18) NOT NULL,
+    domainId NUMERIC(18) NOT NULL,
+    grouped INT NOT NULL,
+    attributeCardinality VARCHAR(20) NOT NULL,
+    attributeInGroupCardinality VARCHAR(20) NOT NULL,
+    ruleStrengthId NUMERIC(18) NOT NULL,
+    contentTypeId NUMERIC(18) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (refsetId) REFERENCES concept(id),
+    FOREIGN KEY (domainId) REFERENCES concept(id),
+    FOREIGN KEY (ruleStrengthId) REFERENCES concept(id),
+    FOREIGN KEY (contentTypeId) REFERENCES concept(id)
+);
+
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@domainId,@grouped,@attributeCardinality,@attributeInGroupCardinality,@ruleStrengthId,@contentTypeId)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+refsetId = @refsetId,
+referencedComponentId = @referencedComponentId,
+domainId = @domainId,
+grouped = @grouped,
+attributeCardinality = @attributeCardinality,
+attributeInGroupCardinality = @attributeInGroupCardinality,
+ruleStrengthId = @ruleStrengthId,
+contentTypeId = @contentTypeId;
+
+
+-- MRCM Module Scope refset file.
+DROP TABLE IF EXISTS mrcmmodulescope;
+CREATE TABLE mrcmmodulescope (
+    id CHAR(52) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(18) NOT NULL,
+    refsetId NUMERIC(18) NOT NULL,
+    referencedComponentId NUMERIC(18) NOT NULL,
+    mrcmRuleRefsetId NUMERIC(18) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (refsetId) REFERENCES concept(id),
+    FOREIGN KEY (mrcmRuleRefsetId) REFERENCES concept(id)
+);
+
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cRefset_MRCMModuleScopeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mrcmRuleRefsetId)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+refsetId = @refsetId,
+referencedComponentId = @referencedComponentId,
+mrcmRuleRefsetId = @mrcmRuleRefsetId;
+
+
+-- MRCM Attribute Range refset file.
+DROP TABLE IF EXISTS mrcmattributerange;
+CREATE TABLE mrcmattributerange (
+    id CHAR(52) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(18) NOT NULL,
+    refsetId NUMERIC(18) NOT NULL,
+    referencedComponentId NUMERIC(18) NOT NULL,
+    rangeConstraint VARCHAR(4000) NOT NULL,
+    attributeRule VARCHAR(4000) NOT NULL,
+    ruleStrengthId NUMERIC(18) NOT NULL,
+    contentTypeId NUMERIC(18) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (refsetId) REFERENCES concept(id),
+    FOREIGN KEY (ruleStrengthId) REFERENCES concept(id),
+    FOREIGN KEY (contentTypeId) REFERENCES concept(id)
+);
+
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ssccRefset_MRCMAttributeRangeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@rangeConstraint,@attributeRule,@ruleStrengthId,@contentTypeId)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+refsetId = @refsetId,
+referencedComponentId = @referencedComponentId,
+rangeConstraint = @rangeConstraint,
+attributeRule = @attributeRule,
+ruleStrengthId = @ruleStrengthId,
+contentTypeId = @contentTypeId;
+
+
+-- MRCM Domain refset file.
+DROP TABLE IF EXISTS mrcmdomain;
+CREATE TABLE mrcmdomain (
+    id CHAR(52) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(18) NOT NULL,
+    refsetId NUMERIC(18) NOT NULL,
+    referencedComponentId NUMERIC(18) NOT NULL,
+    domainConstraint VARCHAR(4000) NOT NULL,
+    parentDomain VARCHAR(4000),
+    proximalPrimitiveConstraint VARCHAR(4000) NOT NULL,
+    proximalPrimitiveRefinement VARCHAR(4000),
+    domainTemplateForPrecoordination VARCHAR(40000) NOT NULL,
+    domainTemplateForPostcoordination VARCHAR(40000) NOT NULL,
+    guideURL VARCHAR(4000) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (refsetId) REFERENCES concept(id)
+) CHARACTER SET utf8;
+
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@domainConstraint,@parentDomain,@proximalPrimitiveConstraint,@proximalPrimitiveRefinement,@domainTemplateForPrecoordination,@domainTemplateForPostcoordination,@guideURL)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+refsetId = @refsetId,
+referencedComponentId = @referencedComponentId,
+domainConstraint = @domainConstraint,
+proximalPrimitiveConstraint = @proximalPrimitiveConstraint,
+proximalPrimitiveRefinement = @proximalPrimitiveRefinement,
+domainTemplateForPrecoordination = @domainTemplateForPrecoordination,
+domainTemplateForPostcoordination = @domainTemplateForPostcoordination,
+guideURL = @guideURL;
 
 
 -- Module Dependency refset file.
