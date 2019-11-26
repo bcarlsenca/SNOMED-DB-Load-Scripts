@@ -2,7 +2,7 @@
 :: Database connection parameters
 :: Please edit these variables to reflect your environment
 ::
-set mysql=C:/Program Files/MySQL/MySQL Server 5.6/bin/mysql.exe
+set mysql=C:/mysql/mysql-5.6.46-winx64/bin/mysql.exe
 set user=root
 set password=admin
 set db_name=snomed

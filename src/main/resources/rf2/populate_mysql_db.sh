@@ -1,12 +1,11 @@
 #!/bin/bash -f
-
 #
 # Database connection parameters
 # Please edit these variables to reflect your environment
-#   - Tested on Windows with "Git Bash" as a shell
-#   - and mysql in the path (use the alias if needed)
+#   - Tested with docker mysql 5.6, 5.7 (using docker mysql server and client)
+#     - host=host.docker.internal
 #
-# alias mysql="C:/Program Files/MySQL/MySQL Server 5.6/bin/mysql"
+host=
 user=root
 password=admin
 db_name=snomed
@@ -20,27 +19,30 @@ echo "See mysql.log for output"
 echo "----------------------------------------" >> mysql.log 2>&1
 echo "Starting ... `/bin/date`" >> mysql.log 2>&1
 echo "----------------------------------------" >> mysql.log 2>&1
-echo "MYSQL_HOME = $MYSQL_HOME" >> mysql.log 2>&1
 echo "user =       $user" >> mysql.log 2>&1
 echo "db_name =    $db_name" >> mysql.log 2>&1
+echo "host =       $host" >> mysql.log 2>&1
 
 if [ "${password}" != "" ]; then
   password="-p${password}"
 fi
+if [ "${host}" != "" ]; then
+  host="-h ${host}"
+fi
 
 echo "    Create and load tables ... `/bin/date`" >> mysql.log 2>&1
-mysql -vvv -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1
+mysql -vvv $host -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 
 if [ $ef -ne 1 ]; then
 echo "    Create indexes ... `/bin/date`" >> mysql.log 2>&1
-mysql -vvv -u $user $password --local-infile $db_name < mysql_indexes.sql >> mysql.log 2>&1
+mysql -vvv $host -u $user $password --local-infile $db_name < mysql_indexes.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
 if [ $ef -ne 1 ]; then
 echo "    Create views ... `/bin/date`" >> mysql.log 2>&1
-mysql -vvv -u $user $password --local-infile $db_name < mysql_views.sql >> mysql.log 2>&1
+mysql -vvv $host -u $user $password --local-infile $db_name < mysql_views.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
