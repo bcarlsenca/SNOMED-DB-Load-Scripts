@@ -484,7 +484,7 @@ CREATE TABLE mrcmattributedomain (
     FOREIGN KEY (contentTypeId) REFERENCES concept(id)
 );
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE mrcmattributedomain LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@domainId,@grouped,@attributeCardinality,@attributeInGroupCardinality,@ruleStrengthId,@contentTypeId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -515,7 +515,7 @@ CREATE TABLE mrcmmodulescope (
     FOREIGN KEY (mrcmRuleRefsetId) REFERENCES concept(id)
 );
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cRefset_MRCMModuleScopeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cRefset_MRCMModuleScopeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE mrcmmodulescope LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@mrcmRuleRefsetId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -545,7 +545,7 @@ CREATE TABLE mrcmattributerange (
     FOREIGN KEY (contentTypeId) REFERENCES concept(id)
 );
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ssccRefset_MRCMAttributeRangeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_ssccRefset_MRCMAttributeRangeSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE mrcmattributerange LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@rangeConstraint,@attributeRule,@ruleStrengthId,@contentTypeId)
 SET id = @id,
 effectiveTime = @effectiveTime,
@@ -579,7 +579,7 @@ CREATE TABLE mrcmdomain (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE moduledependency LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE mrcmdomain LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@domainConstraint,@parentDomain,@proximalPrimitiveConstraint,@proximalPrimitiveRefinement,@domainTemplateForPrecoordination,@domainTemplateForPostcoordination,@guideURL)
 SET id = @id,
 effectiveTime = @effectiveTime,
