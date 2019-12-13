@@ -102,21 +102,6 @@ CREATE TABLE relationship (
 )
 PCTFREE 10 PCTUSED 80;
 
-DROP TABLE IF EXISTS owlexpression;
-CREATE TABLE owlexpression (
-    id NUMERIC(18) UNSIGNED NOT NULL PRIMARY KEY,
-    effectiveTime DATE NOT NULL,
-    active BOOLEAN NOT NULL,
-    moduleId NUMERIC(18) UNSIGNED NOT NULL,
-    refsetId NUMERIC(18) UNSIGNED NOT NULL,
-    referencedComponentId NUMERIC(18) UNSIGNED NOT NULL,
-    owlExpression VARCHAR(10000) NOT NULL,
-    FOREIGN KEY (moduleId) REFERENCES concept(id),
-    FOREIGN KEY (sourceId) REFERENCES concept(id),
-    FOREIGN KEY (refsetId) REFERENCES concept(id),
-    FOREIGN KEY (referencedComponentId) REFERENCES concept(id)
-) CHARACTER SET utf8;
-
 -- OWL Expression table.
 EXECUTE drop_table('owlexpression');
 CREATE TABLE owlexpression (
