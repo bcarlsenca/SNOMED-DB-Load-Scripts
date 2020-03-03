@@ -2,7 +2,7 @@
 #
 # Database connection parameters
 # Please edit these variables to reflect your environment
-#   - Tested with docker mysql 5.6, 5.7 (using docker mysql server and client)
+#   - Tested with docker mysql 5.6, 5.7, 8.0 (using docker mysql server and client)
 #     - host=host.docker.internal
 #
 host=

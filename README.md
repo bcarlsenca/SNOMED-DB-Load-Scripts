@@ -8,9 +8,9 @@ http://www.westcoastinformatics.com/resources.html
 
 Minimum Specification
 ---------------------
-- MYSQL v5.6.+
+- MYSQL v5.6.+, MySQL v8.+
 - Oracle v11.+
-- Postgres 9.+
+- Postgres v9.+, v10.+, v11.+, v12.+
 
 Installation
 ------------
