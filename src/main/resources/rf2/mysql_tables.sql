@@ -122,7 +122,7 @@ CREATE TABLE owlexpression (
     moduleId NUMERIC(18) UNSIGNED NOT NULL,
     refsetId NUMERIC(18) UNSIGNED NOT NULL,
     referencedComponentId NUMERIC(18) UNSIGNED NOT NULL,
-    owlExpression VARCHAR(10000) NOT NULL,
+    owlExpression TEXT NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id),
     FOREIGN KEY (referencedComponentId) REFERENCES concept(id)
@@ -572,8 +572,8 @@ CREATE TABLE mrcmdomain (
     parentDomain VARCHAR(4000),
     proximalPrimitiveConstraint VARCHAR(4000) NOT NULL,
     proximalPrimitiveRefinement VARCHAR(4000),
-    domainTemplateForPrecoordination VARCHAR(40000) NOT NULL,
-    domainTemplateForPostcoordination VARCHAR(40000) NOT NULL,
+    domainTemplateForPrecoordination TEXT NOT NULL,
+    domainTemplateForPostcoordination TEXT NOT NULL,
     guideURL VARCHAR(4000) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (refsetId) REFERENCES concept(id)

@@ -47,7 +47,7 @@ root@842bfb3da1f1:/data# ./populate_mysql_db.sh &
 #
 # Launch the container
 #
-docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=snomed -d mysql:8.0
+docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=snomed -d mysql:8.0 --local_infile=ON
 
 #
 # populate_mysql_db.sh
