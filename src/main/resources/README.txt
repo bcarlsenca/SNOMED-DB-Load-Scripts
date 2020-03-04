@@ -11,7 +11,7 @@ Important Notes
 Key Features
 ------------
 
-* Support for Oracle, Postgres, and MySQL
+* Support for Oracle, Postgres, and MySQL (and MariaDB)
 * Support for RF2 data format
 * Denormalization of concept/description ids for contextualized lookup
 
