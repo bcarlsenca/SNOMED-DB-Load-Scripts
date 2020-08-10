@@ -10,8 +10,10 @@ docker run --name snomed-postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snom
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_International
 dir=c:/data/SnomedCt_US
+dir=c:/data/SnomedCt_International
+cd $dir
+./transitive_closure.sh
 docker run -it -v $dir:/data postgres:9.6 /bin/bash
 root@842bfb3da1f1:/# cd /data
 root@842bfb3da1f1:/data# ./populate_postgres_db.sh
@@ -33,8 +35,10 @@ docker run --name snomed-postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snom
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_International
 dir=c:/data/SnomedCt_US
+dir=c:/data/SnomedCt_International
+cd $dir
+./transitive_closure.sh
 docker run -it -v $dir:/data postgres:10.12 /bin/bash
 root@842bfb3da1f1:/# cd /data
 root@842bfb3da1f1:/data# ./populate_postgres_db.sh
@@ -51,8 +55,10 @@ docker run --name snomed-postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snom
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_International
 dir=c:/data/SnomedCt_US
+dir=c:/data/SnomedCt_International
+cd $dir
+./transitive_closure.sh
 docker run -it -v $dir:/data postgres:11.2 /bin/bash
 root@842bfb3da1f1:/# cd /data
 root@842bfb3da1f1:/data# ./populate_postgres_db.sh
@@ -69,8 +75,10 @@ docker run --name snomed-postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snom
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_International
 dir=c:/data/SnomedCt_US
+dir=c:/data/SnomedCt_International
+cd $dir
+./transitive_closure.sh
 docker run -it -v $dir:/data postgres:12.2 /bin/bash
 root@842bfb3da1f1:/# cd /data
 root@842bfb3da1f1:/data# ./populate_postgres_db.sh

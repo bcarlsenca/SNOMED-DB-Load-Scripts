@@ -1,6 +1,5 @@
 #!/bin/bash -f
 
-
 #
 # Database connection parameters
 # Please edit these variables to reflect your environment

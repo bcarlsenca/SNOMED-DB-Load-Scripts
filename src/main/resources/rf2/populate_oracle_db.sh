@@ -5,13 +5,11 @@
 # Please edit these variables to reflect your environment
 #   - Tested on Windows with "Git Bash" as a shell
 #
-ORACLE_HOME=/app/oracle/product/12.1.0/dbhome_1
-export ORACLE_HOME
+export ORACLE_HOME=/app/oracle/product/12.1.0/dbhome_1
 user=snomed
 password=snomed
 tns_name=global
-NLS_LANG=AMERICAN_AMERICA.UTF8
-export NLS_LANG
+export NLS_LANG=AMERICAN_AMERICA.UTF8
 
 /bin/rm -f oracle.log
 touch oracle.log
