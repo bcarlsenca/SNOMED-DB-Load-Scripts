@@ -1,10 +1,10 @@
 #!/bin/bash -f
 #
 # Database connection parameters
+# NOTE: or MySQL 8.0, you'll need to run the server with local_infile=ON
 # Please edit these variables to reflect your environment
 #   - Tested with docker mysql 5.6, 5.7, 8.0 (using docker mysql server and client)
 #     - host=host.docker.internal
-#
 host=
 user=root
 password=admin

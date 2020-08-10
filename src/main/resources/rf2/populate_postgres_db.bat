@@ -3,8 +3,9 @@
 :: Please edit these variables to reflect your environment
 ::
 set psql=C:/PostgreSQL/pg96/bin/psql.exe
+set PGHOST=localhost
 set PGUSER=postgres
-set PGPASSWORD=
+set PGPASSWORD=admin
 set PGDATABASE=snomed
 
 del postgres.log

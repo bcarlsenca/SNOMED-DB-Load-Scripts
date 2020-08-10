@@ -4,8 +4,8 @@
 #
 # Database connection parameters
 # Please edit these variables to reflect your environment
-#   - Tested with docker mysql 5.6, 5.7 (using docker mysql server and client)
-#     - host=host.docker.internal
+#   - Tested with docker postgres 9, 10, 11, 12 (using docker postgres server and client)
+#     - PGHOST=host.docker.internal
 #   - Tested on Windows with "Git Bash" as a shell
 #   - and psql in the path
 #
@@ -25,10 +25,6 @@ echo "Starting ... `/bin/date`" >> postgres.log 2>&1
 echo "----------------------------------------" >> postgres.log 2>&1
 echo "user =       $PGUSER" >> postgres.log 2>&1
 echo "db_name =    $PGDATABASE" >> postgres.log 2>&1
-
-if [ "${password}" != "" ]; then
-  password="-p${password}"
-fi
 
 echo "    Create and load tables ... `/bin/date`" >> postgres.log 2>&1
 psql < psql_tables.sql >> postgres.log 2>&1
