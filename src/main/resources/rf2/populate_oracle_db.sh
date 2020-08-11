@@ -5,10 +5,12 @@
 # Please edit these variables to reflect your environment
 #   - Tested on Windows with "Git Bash" as a shell
 #
-export ORACLE_HOME=/app/oracle/product/12.1.0/dbhome_1
+
+# Set if necessary
+#export ORACLE_HOME=/app/oracle/product/12.1.0/dbhome_1
 user=snomed
 password=snomed
-tns_name=global
+tns_name=ORCLCDB
 export NLS_LANG=AMERICAN_AMERICA.UTF8
 
 /bin/rm -f oracle.log
@@ -24,7 +26,7 @@ echo "user =        $user" >> oracle.log 2>&1
 echo "tns_name =    $tns_name" >> oracle.log 2>&1
 
 echo "    Create tables ... `/bin/date`" >> oracle.log 2>&1
-echo "@oracle_tables.sql"|$ORACLE_HOME/bin/sqlplus $user/$password@$tns_name  >> oracle.log 2>&1
+echo "@oracle_tables.sql" |  $ORACLE_HOME/bin/sqlplus $user/$password@$tns_name  >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
  
 if [ $ef -ne 1 ]; then
