@@ -5,7 +5,7 @@
 set psql=C:/PostgreSQL/pg96/bin/psql.exe
 set PGHOST=localhost
 set PGUSER=postgres
-set PGPASSWORD=admin
+set PGPASSWORD=
 set PGDATABASE=snomed
 
 del postgres.log

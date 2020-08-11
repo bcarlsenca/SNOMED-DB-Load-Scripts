@@ -10,7 +10,7 @@
 #
 export PGHOST=localhost
 export PGUSER=postgres
-export PGPASSWORD=admin
+export PGPASSWORD=
 export PGDATABASE=snomed
 
 /bin/rm -f postgres.log
