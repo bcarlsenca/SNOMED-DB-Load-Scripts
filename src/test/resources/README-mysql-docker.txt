@@ -14,8 +14,8 @@ docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQ
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_US
 dir=c:/data/SnomedCt_International
+dir=c:/data/SnomedCt_US
 cd $dir
 ./transitive_closure.sh 
 docker run -it -v $dir:/data mysql:5.7 /bin/bash
@@ -34,8 +34,8 @@ docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQ
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_US
 dir=c:/data/SnomedCt_International
+dir=c:/data/SnomedCt_US
 cd $dir
 ./transitive_closure.sh
 docker run -it -v $dir:/data mysql:8.0 /bin/bash
@@ -54,8 +54,8 @@ docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQ
 # populate_mysql_db.sh, populate_mysql_db_tc.sh
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
-dir=c:/data/SnomedCt_US
 dir=c:/data/SnomedCt_International
+dir=c:/data/SnomedCt_US
 cd $dir
 ./transitive_closure.sh
 docker run -it -v $dir:/data mariadb:10.4 /bin/bash
