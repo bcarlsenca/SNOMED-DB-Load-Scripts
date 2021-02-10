@@ -11,10 +11,8 @@
 #
 # Launch the container
 #
-dir=c:/data/SnomedCt_International
-dir=c:/data/SnomedCt_US
+dir=c:/data/
 cd $dir
-./transitive_closure.sh 
 docker run --name snomed-oracle -v $dir:/data -d --rm -p 8080:8080 -p 1521:1521 store/oracle/database-enterprise:12.2.0.1-slim
 
 #
@@ -22,12 +20,12 @@ docker run --name snomed-oracle -v $dir:/data -d --rm -p 8080:8080 -p 1521:1521 
 # host = host.docker.internal  (**make sure to edit this setting before proceeding)
 #
 docker exec -it snomed-oracle /bin/bash
-root@842bfb3da1f1:/# cd /data
+root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/# . /home/oracle/.bashrc
 root@842bfb3da1f1:/# sqlplus sys/Oradoc_db1 as sysdba
 alter session set "_ORACLE_SCRIPT"=true;
 create user snomed identified by snomed;
 GRANT CONNECT, RESOURCE, DBA TO snomed;
 exit
-root@842bfb3da1f1:/data# ./populate_oracle_db.sh
-root@842bfb3da1f1:/data# ./populate_oracle_db_tc.sh
+root@842bfb3da1f1:/data/rf2# ./populate_oracle_db.sh
+root@842bfb3da1f1:/data/rf2# ./populate_oracle_db_tc.sh
