@@ -2,7 +2,7 @@
 ##### File Setup LINUX (BUILD SERVER)
 
 cd /wci/data
-unzip -o /wci/projects/SNOMED-DB-Load-Scripts/target/snomed-db-scripts-postgres.*.zip
+unzip -o /wci/projects/SNOMED-DB-Load-Scripts/target/snomed-db-scripts-oracle.*.zip
 sudo chmod +x rf2/populate_mysql_db.sh
 sudo chmod +x rf2/populate_mysql_db_tc.sh
 
@@ -15,6 +15,11 @@ sudo chmod +x rf2/populate_mysql_db_tc.sh
 #
 # For testing oracle, run a docker oracle instance
 #  - https://dzone.com/articles/oracle-12c-image-installation-in-docker
+
+#
+# If running an Oracle Database Docker Container on Linux use docker login and enter your hub.docker.com
+# credentials for image to download.
+#
 
 
 #
