@@ -13,8 +13,10 @@ password=snomed
 tns_name=ORCLCDB
 export NLS_LANG=AMERICAN_AMERICA.UTF8
 
-/bin/rm -f oracle.log
-touch oracle.log
+# Oracle Docker on Ubuntu does not allow removing the log file
+# Do this step prior to starting Docker to execute populate scripts
+# /bin/rm -f oracle.log
+# touch oracle.log
 ef=0
 
 echo "See oracle.log for output"
@@ -28,7 +30,7 @@ echo "tns_name =    $tns_name" >> oracle.log 2>&1
 echo "    Create tables ... `/bin/date`" >> oracle.log 2>&1
 echo "@oracle_tables.sql" |  $ORACLE_HOME/bin/sqlplus $user/$password@$tns_name  >> oracle.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
- 
+
 if [ $ef -ne 1 ]; then
 echo "    Load concept table data ... `/bin/date`" >> oracle.log 2>&1
 $ORACLE_HOME/bin/sqlldr $user/$password@$tns_name control="concept.ctl" >> oracle.log 2>&1
