@@ -123,6 +123,27 @@ AND typeId = cpn4.conceptId
 AND characteristicTypeId = cpn5.conceptId
 AND modifierId = cpn6.conceptId;
 
+xxx-- Relationship concrete values table.
+EXECUTE drop_view('relationshipconcretevalueswithnames');
+CREATE VIEW relationshipconcretevalueswithnames AS
+SELECT id, effectiveTime, active, 
+    moduleId, cpn1.preferredName moduleIdName,
+    sourceId, cpn2.preferredName sourceIdName,
+    value, relationshipGroup, 
+    typeId, cpn4.preferredName typeIdName,
+    characteristicTypeId, cpn5.preferredName characteristicTypeIdName,
+    modifierId, cpn6.preferredName modifierIdName
+from relationshipconcretevalues,
+    conceptpreferredname cpn1,
+    conceptpreferredname cpn2,
+    conceptpreferredname cpn4,
+    conceptpreferredname cpn5,
+    conceptpreferredname cpn6
+WHERE moduleId = cpn1.conceptId
+AND sourceId = cpn2.conceptId
+AND typeId = cpn4.conceptId
+AND characteristicTypeId = cpn5.conceptId
+AND modifierId = cpn6.conceptId;
 
 -- Stated Relationship table.
 EXECUTE drop_view('statedrelationshipwithnames');

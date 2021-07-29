@@ -71,6 +71,29 @@ CREATE TABLE relationship (
 
 \copy relationship FROM 'Snapshot/Terminology/sct2_Relationship_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
+-- Relationship concrete values file.
+DROP TABLE IF EXISTS relationshipconcretevalues CASCADE;
+CREATE TABLE relationshipconcretevalues (
+    id NUMERIC(20) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(20) NOT NULL,
+    sourceId NUMERIC(20) NOT NULL,
+    value VARCHAR(256) NOT NULL,
+    relationshipGroup INT NOT NULL,
+    typeId NUMERIC(20) NOT NULL,
+    characteristicTypeId NUMERIC(20) NOT NULL,
+    modifierId NUMERIC(20) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (sourceId) REFERENCES concept(id),
+    FOREIGN KEY (destinationId) REFERENCES concept(id),
+    FOREIGN KEY (typeId) REFERENCES concept(id),
+    FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
+    FOREIGN KEY (modifierId) REFERENCES concept(id)
+);
+
+\copy relationship FROM 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
+
 
 -- OWL Expression file.
 DROP TABLE IF EXISTS owlexpression CASCADE;

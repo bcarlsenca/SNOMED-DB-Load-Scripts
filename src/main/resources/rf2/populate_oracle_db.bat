@@ -45,6 +45,11 @@ echo     Load relationship table data >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)
 type relationship.log >> oracle.log
 
+echo     Load relationship concrete values table data >> oracle.log 2>&1
+%ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="relationshipconcretevalues.ctl" >> oracle.log 2>&1
+IF %ERRORLEVEL% NEQ 0 (set error=1)
+type relationshipconcretevalues.log >> oracle.log
+
 echo     Load owl expression table data >> oracle.log 2>&1
 %ORACLE_HOME%\bin\sqlldr %user%/%password%@%tns_name% control="owlexpression.ctl" >> oracle.log 2>&1
 IF %ERRORLEVEL% NEQ 0 (set error=1)

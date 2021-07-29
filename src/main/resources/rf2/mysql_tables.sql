@@ -113,6 +113,40 @@ typeId = @typeId,
 characteristicTypeId = @characteristicTypeId,
 modifierId = @modifierId;
 
+-- Relationship concrete values file.
+DROP TABLE IF EXISTS relationshipconcretevalues;
+CREATE TABLE relationshipconcretevalues (
+    id NUMERIC(20) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    moduleId NUMERIC(20) NOT NULL,
+    sourceId NUMERIC(20) NOT NULL,
+    value VARCHAR(256) NOT NULL,
+    relationshipGroup INT UNSIGNED NOT NULL,
+    typeId NUMERIC(20) NOT NULL,
+    characteristicTypeId NUMERIC(20) NOT NULL,
+    modifierId NUMERIC(20) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (sourceId) REFERENCES concept(id),
+    FOREIGN KEY (destinationId) REFERENCES concept(id),
+    FOREIGN KEY (typeId) REFERENCES concept(id),
+    FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
+    FOREIGN KEY (modifierId) REFERENCES concept(id)
+) CHARACTER SET utf8;
+
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE relationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+(@id,@effectiveTime,@active,@moduleId,@sourceId,@value,@relationshipGroup,@typeId,@characteristicTypeId,@modifierId)
+SET id = @id,
+effectiveTime = @effectiveTime,
+active = @active,
+moduleId = @moduleId,
+sourceId = @sourceId,
+value = @value,
+relationshipGroup = @relationshipGroup,
+typeId = @typeId,
+characteristicTypeId = @characteristicTypeId,
+modifierId = @modifierId;
+
 -- OWL Expression file.
 DROP TABLE IF EXISTS owlexpression;
 CREATE TABLE owlexpression (

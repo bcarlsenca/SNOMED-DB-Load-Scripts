@@ -102,6 +102,28 @@ CREATE TABLE relationship (
 )
 PCTFREE 10 PCTUSED 80;
 
+-- Relationship concrete values table.
+EXECUTE drop_table('relationshipconcretevalues');
+CREATE TABLE relationshipconcretevalues (
+    id NUMERIC(20) NOT NULL PRIMARY KEY,
+    effectiveTime DATE NOT NULL,
+    active NUMERIC(1) NOT NULL,
+    moduleId NUMERIC(20) NOT NULL,
+    sourceId NUMERIC(20) NOT NULL,
+    value VARCHAR2(256) NOT NULL,
+    relationshipGroup INT NOT NULL,
+    typeId NUMERIC(20) NOT NULL,
+    characteristicTypeId NUMERIC(20) NOT NULL,
+    modifierId NUMERIC(20) NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES concept(id),
+    FOREIGN KEY (sourceId) REFERENCES concept(id),
+    FOREIGN KEY (destinationId) REFERENCES concept(id),
+    FOREIGN KEY (typeId) REFERENCES concept(id),
+    FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
+    FOREIGN KEY (modifierId) REFERENCES concept(id)
+)
+PCTFREE 10 PCTUSED 80;
+
 -- OWL Expression table.
 EXECUTE drop_table('owlexpression');
 CREATE TABLE owlexpression (
