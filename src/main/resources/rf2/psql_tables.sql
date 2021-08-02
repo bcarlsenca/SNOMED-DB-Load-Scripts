@@ -86,13 +86,12 @@ CREATE TABLE relationshipconcretevalues (
     modifierId NUMERIC(20) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (sourceId) REFERENCES concept(id),
-    FOREIGN KEY (destinationId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
     FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
     FOREIGN KEY (modifierId) REFERENCES concept(id)
 );
 
-\copy relationship FROM 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
+\copy relationshipconcretevalues FROM 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
 
 
 -- OWL Expression file.

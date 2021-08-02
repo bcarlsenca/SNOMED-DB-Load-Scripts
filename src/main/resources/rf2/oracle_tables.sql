@@ -117,7 +117,6 @@ CREATE TABLE relationshipconcretevalues (
     modifierId NUMERIC(20) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (sourceId) REFERENCES concept(id),
-    FOREIGN KEY (destinationId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
     FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
     FOREIGN KEY (modifierId) REFERENCES concept(id)

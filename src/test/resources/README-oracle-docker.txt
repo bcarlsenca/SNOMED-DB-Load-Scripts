@@ -1,4 +1,15 @@
 
+##### File Setup WINDOWS
+
+* Download the SNOMED distribution from NLM
+* Unpack to c:/data/SnomedCT_International (for international edition)
+* Unpack to c:/data/SnomedCT_US (for US edition)
+* Clone and build these projects
+    * git@github.com:WestCoastInformatics/SNOMED-DB-Load-Scripts.git
+    * git@github.com:WestCoastInformatics/SNOMED-CT-Transitive-Closure.git
+* Open the target/snomed*-oracle*zip file
+* Copy the contents of the "rf2" directory to folder where SNOMED data is unpacked (see above)
+
 ##### File Setup LINUX (BUILD SERVER)
 
 cd /wci/data
