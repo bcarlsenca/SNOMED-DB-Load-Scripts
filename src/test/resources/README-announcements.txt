@@ -2,16 +2,16 @@
 
 ### Twitter, LinkedIn, Facebook
 
-It's that time again! Announcing #SNOMEDCT DB load and transitive closure scripts for 
-the 01/31/2021 International Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
+It's that time again! Announcing #SNOMEDCT DB load and transitive closure scripts for
+the 013/01/2021 United States Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
 See https://westcoastinformatics.com/resources.html  #MakingTerminologyEasy #snomed
 
 This freely available solution enables loading of #SQL database with the latest editions of SNOMED.
 
 ----
 
-Announcing #SNOMEDCT DB load and transitive closure scripts for 
-the 01/31/2020 International Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
+Announcing #SNOMEDCT DB load and transitive closure scripts for
+the 03/01/2021 United States Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
 See https://westcoastinformatics.com/resources.html  #MakingTerminologyEasy #MakingSnomedEasy #snomed
 
 This freely available solution enables one to load their #SQL database with the latest US Editions of SNOMED.
@@ -21,9 +21,9 @@ Subject: SNOMEDCT DB load and transitive closure scripts
 
 Hi all,
 
-NLM recently posted the January 31, 2021 update of the SNOMEDCT International Edition. 
+NLM recently posted the March 1, 2021 update of the SNOMEDCT International Edition.
 
-For those interested in interacting with SNOMEDCT data through a relational database, 
+For those interested in interacting with SNOMEDCT data through a relational database,
 we have a utility to make it easy to load the data into a Postgres, Oracle, MySQL (or MariaDB) database.
 It works for both International Edition and the US Edition.
 
@@ -41,6 +41,6 @@ This utility is freely available through our website:
   - https://www.youtube.com/watch?v=th36V4B1O8E
 
 
-Feel free to share this announcement with others or retweet the announcement - 
+Feel free to share this announcement with others or retweet the announcement -
 https://twitter.com/wcinformatics/status/<TODO:needs replacement> !
 
