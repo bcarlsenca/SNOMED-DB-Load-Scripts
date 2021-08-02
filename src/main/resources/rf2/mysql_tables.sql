@@ -128,13 +128,12 @@ CREATE TABLE relationshipconcretevalues (
     modifierId NUMERIC(20) NOT NULL,
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (sourceId) REFERENCES concept(id),
-    FOREIGN KEY (destinationId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
     FOREIGN KEY (characteristicTypeId) REFERENCES concept(id),
     FOREIGN KEY (modifierId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE relationship LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE relationshipconcretevalues LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@sourceId,@value,@relationshipGroup,@typeId,@characteristicTypeId,@modifierId)
 SET id = @id,
 effectiveTime = @effectiveTime,

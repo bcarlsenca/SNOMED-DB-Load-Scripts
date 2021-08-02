@@ -8,10 +8,11 @@ find . -name "*txt" | grep -v Refset_Association | grep -v Refset_AttributeValue
   grep -v Refset_MRCMAttributeDomain | grep -v Refset_MRCMModuleScope |\
   grep -v Refset_MRCMAttributeRange | grep -v Refset_ModuleDependency |\
   grep -v Refset_MRCMDomain | grep -v sct2_Concept | grep -v sct2_Description |\
-  grep -v sct2_Identifier | grep -v sct2_Relationship | grep -v Refset_OWLExpression |\
-  grep -v sct2_StatedRelationship | grep -v sct2_TextDefinition | wc -l
+  grep -v sct2_Identifier | grep -v sct2_Relationship_ | grep -v Refset_OWLExpression |\
+  grep -v sct2_StatedRelationship | grep -v sct2_TextDefinition |\
+  grep -v sct2_RelationshipConcreteValues |  wc -l
 
-# Look that all files are there (this should equal 20)
+# Look that all files are there (this should equal 21)
 find . -name "*txt" |\
  perl -ne 'print if /Refset_Association|AttributeValue|Refset_SimpleSn/; \
    print if /Refset_Language|Refset_ExtendedMap|Refset_SimpleMap/; \
@@ -19,6 +20,6 @@ find . -name "*txt" |\
    print if /Refset_MRCMAttributeDomain|Refset_MRCMModuleScope/; \
    print if /Refset_MRCMAttributeRange|Refset_ModuleDependency/; \
    print if /Refset_MRCMDomain|sct2_Concept|sct2_Description/; \
-   print if /sct2_Identifier|sct2_Relationship|Refset_OWLExpression/; \
+   print if /sct2_Identifier|sct2_Relationship(ConcreteValues)?_|Refset_OWLExpression/; \
    print if /sct2_StatedRelationship|sct2_TextDefinition/; \
    print if /sct2_TransitiveClosure/' | wc -l 
