@@ -1,11 +1,11 @@
 options (skip=1,direct=true)
 load data
 characterset UTF8 length semantics char
-infile 'Snapshot/Terminology/sct2_Relationship_Snapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
-badfile 'relationship.bad'
-discardfile 'relationship.dsc'
+infile 'Snapshot/Terminology/sct2_RelationshipConcreteValues_Snapshot_${editionLabel}_${editionVersion}.txt' "str X'0d0a'"
+badfile 'relationshipconcretevalues.bad'
+discardfile 'relationshipconcretevalues.dsc'
 insert
-into table relationship
+into table relationshipconcretevalues
 reenable disabled_constraints
 fields terminated by X'09'
 trailing nullcols
@@ -15,7 +15,7 @@ trailing nullcols
     active INTEGER EXTERNAL,
     moduleId INTEGER EXTERNAL,
     sourceId INTEGER EXTERNAL,
-    destinationId INTEGER EXTERNAL,
+    value CHAR(256),
     relationshipGroup INTEGER EXTERNAL,
     typeId INTEGER EXTERNAL,
     characteristicTypeId INTEGER EXTERNAL,
