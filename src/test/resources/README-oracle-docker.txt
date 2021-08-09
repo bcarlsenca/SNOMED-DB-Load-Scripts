@@ -41,8 +41,9 @@ docker run --name snomed-oracle -v %dir%:/data -d --rm -p 8080:8080 -p 1521:1521
 #
 # If not running Docker as root LINUX (BUILD SERVER)
 #
-touch oracle.log concept.log description.log identifier.log relationship.log owlexpression.log statedrelationship.log textdefinition.log association.log attributevalue.log simple.log complexmap.log extendedmap.log simplemap.log language.log refsetdescriptor.log descriptiontype.log moduledependency.log
-chmod a=rw oracle.log concept.log description.log identifier.log relationship.log owlexpression.log statedrelationship.log textdefinition.log association.log attributevalue.log simple.log complexmap.log extendedmap.log simplemap.log language.log refsetdescriptor.log descriptiontype.log moduledependency.log
+cd $dir/rf2
+touch oracle.log concept.log description.log identifier.log relationship.log owlexpression.log statedrelationship.log textdefinition.log association.log attributevalue.log simple.log complexmap.log extendedmap.log simplemap.log language.log refsetdescriptor.log descriptiontype.log moduledependency.log relationshipconcretevalues.log
+chmod a=rw oracle.log concept.log description.log identifier.log relationship.log owlexpression.log statedrelationship.log textdefinition.log association.log attributevalue.log simple.log complexmap.log extendedmap.log simplemap.log language.log refsetdescriptor.log descriptiontype.log moduledependency.log relationshipconcretevalues.log
 
 #
 # Create log files and allow read/write to all users.
@@ -78,3 +79,5 @@ root@842bfb3da1f1:/data/rf2# ./populate_oracle_db_tc.sh
 docker exec -it snomed-oracle /bin/bash
 root@842bfb3da1f1:/# . /home/oracle/.bashrc
 root@842bfb3da1f1:/# sqlplus snomed/snomed@ORCLCDB
+
+
