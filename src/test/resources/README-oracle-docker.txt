@@ -51,14 +51,14 @@ chmod a=rw oracle.log concept.log description.log identifier.log relationship.lo
 #
 export dir=/wci/data/
 cd $dir
-docker run --name snomed-oracle -v $dir:/data -d --rm -p 8080:8080 -p 1521:1521 store/oracle/database-enterprise:12.2.0.1-slim
+sudo docker run --name snomed-oracle -v $dir:/data -d --rm -p 8080:8080 -p 1521:1521 store/oracle/database-enterprise:12.2.0.1-slim
 
 #
 # populate_oracle_db.sh, populate_oracle_db_tc.sh
 #
 # Launch the container
 #
-docker exec -it snomed-oracle /bin/bash
+sudo docker exec -it snomed-oracle /bin/bash
 
 root@842bfb3da1f1:/# . /home/oracle/.bashrc
 root@842bfb3da1f1:/# sqlplus sys/Oradoc_db1 as sysdba
@@ -76,7 +76,7 @@ root@842bfb3da1f1:/data/rf2# ./populate_oracle_db_tc.sh
 # Skip docker exec command if still connected from prior step
 #
 
-docker exec -it snomed-oracle /bin/bash
+sudo docker exec -it snomed-oracle /bin/bash
 root@842bfb3da1f1:/# . /home/oracle/.bashrc
 root@842bfb3da1f1:/# sqlplus snomed/snomed@ORCLCDB
 
