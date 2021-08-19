@@ -1,3 +1,7 @@
+# DEPRECATED
+
+Use https://github.com/WestCoastInformatics/SNOMED-DB-Load-Scripts.git instead
+
 SNOMED CT DATABASE LOAD SCRIPTS
 ===============================
 Scripts to create and populate a MySQL, Postgres, or Oracle database with a 
