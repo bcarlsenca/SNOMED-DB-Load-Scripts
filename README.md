@@ -15,15 +15,15 @@ Minimum Specification
 
 Installation
 ------------
-* See HOWTO.txt file to understand how to load the rf2 files into the database
+* See [HOWTO.txt](src/main/resources/HOWTO.txt) file to understand how to load the rf2 files into the database
 
 
 See Also
 --------
-* src/main/resources/LICENSE.txt
-* src/main/resources/README.txt
-* src/main/resources/HOWTO.txt
-   
+* [src/main/resources/LICENSE.txt](src/main/resources/LICENSE.txt)
+* [src/main/resources/README.txt](src/main/resources/README.txt)
+* [src/main/resources/HOWTO.txt](src/main/resources/HOWTO.txt)
+
 TODO
 ----
 Next Steps:
