@@ -8,10 +8,10 @@ http://www.westcoastinformatics.com/resources.html
 
 Minimum Specification
 ---------------------
-- MYSQL v5.6.+, MySQL v8.+, MariaDB 10.+
+- MYSQL v5.7.+, MySQL v8.+, MariaDB 10.+
   - MySQL v8 requires the server to run with "--local_infile=ON"  
 - Oracle v11.+
-- Postgres v9.+, v10.+, v11.+, v12.+
+- Postgres v10.+, v11.+, v12.+, v13.+
 
 Installation
 ------------
