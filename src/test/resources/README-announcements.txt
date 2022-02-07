@@ -3,7 +3,7 @@
 ### Twitter, LinkedIn, Facebook
 
 It's that time again! Announcing #SNOMEDCT DB load and transitive closure scripts for
-the 09/01/2021 United States Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
+the 20210901 United States Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
 See https://westcoastinformatics.com/resources.html  #MakingTerminologyEasy #snomed
 
 This freely available solution enables loading of #SQL database with the latest editions of SNOMED.
