@@ -2,7 +2,7 @@
 
 ### Twitter, LinkedIn, Facebook
 
-It's that time again! Announcing #SNOMEDCT DB load and transitive closure scripts for the 20220301 US Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
+It's that time again! Announcing #SNOMEDCT DB load and transitive closure scripts for the 20220901 US Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
 See https://westcoastinformatics.com/resources #MakingTerminologyEasy #snomed
 
 This freely available solution enables loading of #SQL database with the latest editions of SNOMED.
@@ -15,11 +15,11 @@ See https://westcoastinformatics.com/resources  #MakingTerminologyEasy #MakingSn
 This freely available solution enables one to load their #SQL database with the latest editions of #SNOMED.
 
 ### UMLS Users Mailing List
-Subject: 20220301 SNOMEDCT DB load and transitive closure scripts
+Subject: 20220901 SNOMEDCT DB load and transitive closure scripts
 
 Hi all,
 
-NLM recently posted the March 1, 2022 update of the SNOMEDCT US Edition.
+NLM recently posted the September 1, 2022 update of the SNOMEDCT US Edition.
 
 For those interested in interacting with SNOMEDCT data through a relational database,
 we have a utility to make it easy to load the data into a Postgres, Oracle, MySQL (or MariaDB) database.
