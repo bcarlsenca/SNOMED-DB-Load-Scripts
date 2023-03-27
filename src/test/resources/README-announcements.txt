@@ -21,7 +21,7 @@ https://www.westcoastinformatics.com/products/db-load-scripts
 ----
 
 Is it March already?! Announcing #SNOMEDCT DB load and transitive closure scripts for the 20230301 United States Edition! Out-of-the-box support for #Postgres, #Oracle, #MySQL, and #MariaDB.
-See https://westcoastinformatics.com/resources  #MakingTerminologyEasy #MakingSnomedEasy #snomed
+See https://westcoastinformatics.com/products/db-load-scripts  #MakingTerminologyEasy #MakingSnomedEasy #snomed
 
 This freely available solution enables one to load their #SQL database with the latest editions of #SNOMED.
 
