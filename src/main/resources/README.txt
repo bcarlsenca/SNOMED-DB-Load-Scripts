@@ -1,5 +1,5 @@
 Welcome to SNOMED CT MySQL, Postgres, and Oracle Database Load Scripts
-http://www.wcinformatics.com/resources.html
+https://www.westcoastinformatics.com/products/db-load-scripts
 
 Go to the above link for documentation, and additional downloads.
 
