@@ -4,7 +4,7 @@ Scripts to create and populate a MySQL, Postgres, or Oracle database with a
 SNOMED CT terminology release in RF2.
 
 To download a package built for the latest US or International edition, visit
-http://www.westcoastinformatics.com/resources.html
+https://www.westcoastinformatics.com/products/db-load-scripts
 
 Minimum Specification
 ---------------------
