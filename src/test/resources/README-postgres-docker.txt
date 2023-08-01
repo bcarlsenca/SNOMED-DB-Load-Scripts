@@ -24,16 +24,16 @@ sudo chmod +x rf2/populate_postgres_db_tc.sh
 #  - https://hub.docker.com/_/postgres
 #
 
-##### Postgres 10.17
+##### Postgres 11.20
 #
 # Launch the container
 #
-docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:10.17
+docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:11.20
 
 # WINDOWS git bash (to simulate running in Linux)
 # export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
 dir=C:/data
-docker run -it -v "$dir":/data postgres:10.17 /bin/bash
+docker run -it -v "$dir":/data postgres:11.20 /bin/bash
 root@842bfb3da1f1:/# cd /data/SnomedCT_International
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
@@ -42,22 +42,22 @@ root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
 # export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
 export dir=/wci/data/
 cd $dir
-docker run -it -v "$dir":/data postgres:10.17 /bin/bash
+docker run -it -v "$dir":/data postgres:11.20 /bin/bash
 
 root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
 
-##### Postgres 11.12
+##### Postgres 12.15
 #
 # Launch the container
 #
-docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:11.12
+docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:12.15
 
 # WINDOWS git bash (to simulate running in Linux)
 # export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
 dir=C:/data
-docker run -it -v "$dir":/data postgres:11.12 /bin/bash
+docker run -it -v "$dir":/data postgres:12.15 /bin/bash
 root@842bfb3da1f1:/# cd /data/SnomedCT_International
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
@@ -66,47 +66,23 @@ root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
 # export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
 export dir=/wci/data/
 cd $dir
-docker run -it -v "$dir":/data postgres:11.12 /bin/bash
-
-root@842bfb3da1f1:/# cd /data/rf2
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
-
-##### Postgres 12.7
-#
-# Launch the container
-#
-docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:12.7
-
-# WINDOWS git bash (to simulate running in Linux)
-# export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
-dir=C:/data
-docker run -it -v "$dir":/data postgres:12.7 /bin/bash
-root@842bfb3da1f1:/# cd /data/SnomedCT_International
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
-
-# LINUX (BUILD SERVER)
-# export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
-export dir=/wci/data/
-cd $dir
-docker run -it -v "$dir":/data postgres:12.7 /bin/bash
+docker run -it -v "$dir":/data postgres:12.15 /bin/bash
 
 root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
 
 
-##### Postgres 13.3
+##### Postgres 13.11
 #
 # Launch the container
 #
-docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:13.3
+docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:13.11
 
 # WINDOWS git bash (to simulate running in Linux)
 # export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
 dir=C:/data
-docker run -it -v "$dir":/data postgres:13.3 /bin/bash
+docker run -it -v "$dir":/data postgres:13.11 /bin/bash
 root@842bfb3da1f1:/# cd /data/SnomedCT_International
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
@@ -115,7 +91,58 @@ root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
 # export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
 export dir=/wci/data/
 cd $dir
-docker run -it -v "$dir":/data postgres:13.3 /bin/bash
+docker run -it -v "$dir":/data postgres:13.11 /bin/bash
+
+root@842bfb3da1f1:/# cd /data/rf2
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
+
+
+##### Postgres 14.8
+#
+# Launch the container
+#
+docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:14.8
+
+# WINDOWS git bash (to simulate running in Linux)
+# export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
+dir=C:/data
+docker run -it -v "$dir":/data postgres:14.8 /bin/bash
+root@842bfb3da1f1:/# cd /data/SnomedCT_International
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
+
+# LINUX (BUILD SERVER)
+# export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
+export dir=/wci/data/
+cd $dir
+docker run -it -v "$dir":/data postgres:14.8 /bin/bash
+
+root@842bfb3da1f1:/# cd /data/rf2
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
+
+
+
+##### Postgres 15.3
+#
+# Launch the container
+#
+docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:15.3
+
+# WINDOWS git bash (to simulate running in Linux)
+# export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
+dir=C:/data
+docker run -it -v "$dir":/data postgres:15.3 /bin/bash
+root@842bfb3da1f1:/# cd /data/SnomedCT_International
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
+root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
+
+# LINUX (BUILD SERVER)
+# export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
+export dir=/wci/data/
+cd $dir
+docker run -it -v "$dir":/data postgres:15.3 /bin/bash
 
 root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh

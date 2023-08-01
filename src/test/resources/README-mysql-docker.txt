@@ -73,17 +73,17 @@ root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/data/rf2# ./populate_mysql_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_mysql_db_tc.sh
 
-##### MariaDB - 10.6
+##### MariaDB - 10.11
 
 #
 # Launch the container
 #
-docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=snomed -d --rm mariadb:10.6
+docker run --name snomed-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=snomed -d --rm mariadb:10.11
 
 # WINDOWS git bash (to simulate running in Linux)
 # export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
 dir=C:/data
-docker run -it -v "$dir":/data mariadb:10.6 /bin/bash
+docker run -it -v "$dir":/data mariadb:10.11 /bin/bash
 root@842bfb3da1f1:/# cd /data/SnomedCT_International
 root@842bfb3da1f1:/data/rf2# ./populate_mysql_db.sh
 root@842bfb3da1f1:/data/rf2# ./populate_mysql_db_tc.sh
@@ -93,7 +93,7 @@ root@842bfb3da1f1:/data/rf2# ./populate_mysql_db_tc.sh
 # host = 172.17.0.1  (**make sure to edit this setting before proceeding)
 export dir=/wci/data/
 cd $dir
-docker run -it -v $dir:/data mariadb:10.6 /bin/bash
+docker run -it -v $dir:/data mariadb:10.11 /bin/bash
 
 root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/data/rf2# ./populate_mysql_db.sh

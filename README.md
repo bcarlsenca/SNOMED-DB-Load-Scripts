@@ -1,6 +1,6 @@
 SNOMED CT DATABASE LOAD SCRIPTS
 ===============================
-Scripts to create and populate a MySQL, Postgres, or Oracle database with a 
+Scripts to create and populate a MySQL, Postgres, or Oracle database with a
 SNOMED CT terminology release in RF2.
 
 To download a package built for the latest US or International edition, visit
@@ -9,9 +9,9 @@ https://www.westcoastinformatics.com/products/db-load-scripts
 Minimum Specification
 ---------------------
 - MYSQL v5.7.+, MySQL v8.+, MariaDB 10.+
-  - MySQL v8 requires the server to run with "--local_infile=ON"  
-- Oracle v11.+
-- Postgres v10.+, v11.+, v12.+, v13.+
+  - MySQL v8 requires the server to run with "--local_infile=ON"
+- Oracle v12.+
+- Postgres v11.+, v12.+, v13.+, v14.+, v15.+
 
 Installation
 ------------
