@@ -28,7 +28,7 @@ sudo chmod +x rf2/populate_postgres_db_tc.sh
 #
 # Launch the container
 #
-docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:11.20
+docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:11.20-alpine
 
 # WINDOWS git bash (to simulate running in Linux)
 # export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
