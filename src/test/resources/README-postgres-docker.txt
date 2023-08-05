@@ -42,7 +42,7 @@ root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
 # export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
 export dir=/wci/data/
 cd $dir
-docker run -it -v "$dir":/data postgres:11.20 /bin/bash
+docker run -it -v "$dir":/data postgres:11.20-alpine /bin/bash
 
 root@842bfb3da1f1:/# cd /data/rf2
 root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
