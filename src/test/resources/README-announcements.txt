@@ -10,10 +10,10 @@ support for #Postgres, #Oracle, #MySQL, and #MariaDB.
 #MakingTerminologyEasy #MakingSnomedEasy #snomed
 https://www.westcoastinformatics.com/products/db-load-scripts
 
--- US Edition March 1:
+-- US Edition September 1:
 
 Fall is upon us! Announcing #SNOMEDCT DB load and transitive
-closure scripts for the 20230301 US Edition! Out-of-the-box
+closure scripts for the 20230901 US Edition! Out-of-the-box
 support for #Postgres, #Oracle, #MySQL, and #MariaDB.
 #MakingTerminologyEasy #MakingSnomedEasy #snomed
 https://www.westcoastinformatics.com/products/db-load-scripts
@@ -26,7 +26,7 @@ See https://westcoastinformatics.com/products/db-load-scripts  #MakingTerminolog
 This freely available solution enables one to load their #SQL database with the latest editions of #SNOMED.
 
 ### UMLS Users Mailing List
-Subject: 20230301 SNOMEDCT DB load and transitive closure scripts
+Subject: 20230901 SNOMEDCT DB load and transitive closure scripts
 
 Hi all,
 
