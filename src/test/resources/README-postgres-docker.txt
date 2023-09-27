@@ -24,30 +24,6 @@ sudo chmod +x rf2/populate_postgres_db_tc.sh
 #  - https://hub.docker.com/_/postgres
 #
 
-##### Postgres 11.20
-#
-# Launch the container
-#
-docker run --name snomed-postgres -p 5432:5432 -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=snomed -d --rm postgres:11.20-alpine
-
-# WINDOWS git bash (to simulate running in Linux)
-# export PGHOST=host.docker.internal  (**make sure to edit this setting before proceeding)
-dir=C:/data
-docker run -it -v "$dir":/data postgres:11.20 /bin/bash
-root@842bfb3da1f1:/# cd /data/SnomedCT_International
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
-
-# LINUX (BUILD SERVER)
-# export PGHOST=172.17.0.1  (**make sure to edit this setting before proceeding)
-export dir=/wci/data/
-cd $dir
-docker run -it -v "$dir":/data postgres:11.20-alpine /bin/bash
-
-root@842bfb3da1f1:/# cd /data/rf2
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db.sh
-root@842bfb3da1f1:/data/rf2# ./populate_postgres_db_tc.sh
-
 ##### Postgres 12.15
 #
 # Launch the container
