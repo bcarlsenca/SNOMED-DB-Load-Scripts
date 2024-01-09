@@ -221,7 +221,7 @@ CREATE TABLE textdefinition (
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (conceptId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
-    FOREIGN KEY (caseSignificanceId) REFERENCES concept(id) 
+    FOREIGN KEY (caseSignificanceId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
 LOAD DATA LOCAL INFILE 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_${editionLabel}_${editionVersion}.txt' INTO TABLE textdefinition LINES TERMINATED BY '\r\n' IGNORE 1 LINES
@@ -612,7 +612,7 @@ CREATE TABLE mrcmdomain (
     FOREIGN KEY (refsetId) REFERENCES concept(id)
 ) CHARACTER SET utf8;
 
-LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_cissccRefset_MRCMAttributeDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE mrcmdomain LINES TERMINATED BY '\r\n' IGNORE 1 LINES
+LOAD DATA LOCAL INFILE 'Snapshot/Refset/Metadata/der2_sssssssRefset_MRCMDomainSnapshot_${editionLabel}_${editionVersion}.txt' INTO TABLE mrcmdomain LINES TERMINATED BY '\r\n' IGNORE 1 LINES
 (@id,@effectiveTime,@active,@moduleId,@refsetId,@referencedComponentId,@domainConstraint,@parentDomain,@proximalPrimitiveConstraint,@proximalPrimitiveRefinement,@domainTemplateForPrecoordination,@domainTemplateForPostcoordination,@guideURL)
 SET id = @id,
 effectiveTime = @effectiveTime,
