@@ -8,7 +8,7 @@ https://www.westcoastinformatics.com/products/db-load-scripts
 
 Minimum Specification
 ---------------------
-- MYSQL v5.7.+, MySQL v8.+, MariaDB 10.+, MariaDB 11.+
+- MySQL v5.7.+, MySQL v8.+, MariaDB 10.+, MariaDB 11.+
   - MySQL v8 requires the server to run with "--local_infile=ON"
 - Oracle v12.+
 - Postgres v12.+, v13.+, v14.+, v15.+, v16.+
