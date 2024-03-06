@@ -2,11 +2,8 @@
 
 #
 # Database connection parameters
-# Please edit these variables to reflect your environment
-#   - Tested on Windows with "Git Bash" as a shell
-#   - and psql in the path, use the alias if needed
-#
-#alias psql="C:/PostgreSQL/pg96/bin/psql.exe"
+# PLEASE EDIT THESE VARIABLES TO REFLECT YOUR ENVIRONMENT
+export PGHOST=[UPDATE]
 export PGUSER=postgres
 export PGPASSWORD=
 export PGDATABASE=snomed
@@ -17,41 +14,46 @@ ef=0
 
 echo "See postgres.log for output"
 
-echo "----------------------------------------" >> postgres.log 2>&1
-echo "Starting ... `/bin/date`" >> postgres.log 2>&1
-echo "----------------------------------------" >> postgres.log 2>&1
-echo "user =       $PGUSER" >> postgres.log 2>&1
-echo "db_name =    $PGDATABASE" >> postgres.log 2>&1
+echo "----------------------------------------" | tee -a postgres.log
+echo "Starting ... `/bin/date`" | tee -a postgres.log
+echo "----------------------------------------" | tee -a postgres.log
+echo "user =       $PGUSER" | tee -a postgres.log
+echo "db_name =    $PGDATABASE" | tee -a postgres.log
 
-if [ "${password}" != "" ]; then
-  password="-p${password}"
-fi
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-echo "    Create and load tables ... `/bin/date`" >> postgres.log 2>&1
-psql < psql_tables.sql >> postgres.log 2>&1
+echo "    Compute transitive closure relationship file ... `/bin/date`" | tee -a postgres.log
+relFile=$(find $DIR/Snapshot/Terminology/ -name "*_Relationship_Snapshot_*.txt" -print -quit)
+$DIR/compute_transitive_closure.pl --force --noself $relFile >> postgres.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 
 if [ $ef -ne 1 ]; then
-echo "    Create indexes ... `/bin/date`" >> postgres.log 2>&1
+echo "    Create and load tables ... `/bin/date`" | tee -a postgres.log
+psql < psql_tables.sql >> postgres.log 2>&1
+if [ $? -ne 0 ]; then ef=1; fi
+fi
+
+if [ $ef -ne 1 ]; then
+echo "    Create indexes ... `/bin/date`" | tee -a postgres.log
 psql < psql_indexes.sql >> postgres.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Create views ... `/bin/date`" >> postgres.log 2>&1
+echo "    Create views ... `/bin/date`" | tee -a postgres.log
 psql < psql_views.sql >> postgres.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
-echo "----------------------------------------" >> postgres.log 2>&1
+echo "----------------------------------------" | tee -a postgres.log
 if [ $ef -eq 1 ]
 then
-  echo "There were one or more errors." >> postgres.log 2>&1
+  echo "There were one or more errors." | tee -a postgres.log
   retval=-1
 else
-  echo "Completed without errors." >> postgres.log 2>&1
+  echo "Completed without errors." | tee -a postgres.log
   retval=0
 fi
-echo "Finished ... `/bin/date`" >> postgres.log 2>&1
-echo "----------------------------------------" >> postgres.log 2>&1
+echo "Finished ... `/bin/date`" | tee -a postgres.log
+echo "----------------------------------------" | tee -a postgres.log
 exit $retval

@@ -92,6 +92,27 @@ AND typeId = cpn4.conceptId
 AND characteristicTypeId = cpn5.conceptId
 AND modifierId = cpn6.conceptId;
 
+-- Relationship concrete values table.
+DROP VIEW IF EXISTS relationshipconcretevalueswithnames;
+CREATE VIEW relationshipconcretevalueswithnames AS
+SELECT id, effectiveTime, active, 
+    moduleId, cpn1.preferredName moduleIdName,
+    sourceId, cpn2.preferredName sourceIdName,
+    value, relationshipGroup, 
+    typeId, cpn4.preferredName typeIdName,
+    characteristicTypeId, cpn5.preferredName characteristicTypeIdName,
+    modifierId, cpn6.preferredName modifierIdName
+from relationshipconcretevalues,
+    conceptpreferredname cpn1,
+    conceptpreferredname cpn2,
+    conceptpreferredname cpn4,
+    conceptpreferredname cpn5,
+    conceptpreferredname cpn6
+WHERE moduleId = cpn1.conceptId
+AND sourceId = cpn2.conceptId
+AND typeId = cpn4.conceptId
+AND characteristicTypeId = cpn5.conceptId
+AND modifierId = cpn6.conceptId;
 
 -- OWL Expression table
 DROP VIEW IF EXISTS owlexpressionwithnames;
@@ -432,3 +453,15 @@ WHERE moduleId = cpn1.conceptId
 AND refsetId = cpn2.conceptId
 AND referencedComponentId = cpn3.conceptId;
 
+-- transitive closure table
+-- NOTE: this assumes conceptpreferredname has already been created
+--       via the standard RF2 load scripts
+DROP VIEW IF EXISTS transitiveclosurewithnames;
+CREATE VIEW transitiveclosurewithnames AS
+SELECT superTypeId, cpn1.preferredName superTypeName,
+       subTypeId, cpn2.preferredName subTypeName, a.depth
+FROM transitiveclosure a,
+     conceptpreferredname cpn1,
+     conceptpreferredname cpn2
+WHERE a.superTypeId = cpn1.conceptId
+  AND a.subTypeId = cpn2.conceptId;

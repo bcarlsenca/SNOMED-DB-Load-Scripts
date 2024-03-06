@@ -1,11 +1,8 @@
 #!/bin/bash -f
 #
 # Database connection parameters
-# Please edit these variables to reflect your environment
-#   - Tested with docker mysql 5.6, 5.7 (using docker mysql server and client)
-#     - host=host.docker.internal
-#
-host=
+# PLEASE EDIT THESE VARIABLES TO REFLECT YOUR ENVIRONMENT
+host=[UPDATE]
 user=root
 password=admin
 db_name=snomed
@@ -14,14 +11,14 @@ db_name=snomed
 touch mysql.log
 ef=0
 
-echo "See mysql.log for output"
+echo "See mysql.log for detailed output"
 
-echo "----------------------------------------" >> mysql.log 2>&1
-echo "Starting ... `/bin/date`" >> mysql.log 2>&1
-echo "----------------------------------------" >> mysql.log 2>&1
-echo "user =       $user" >> mysql.log 2>&1
-echo "db_name =    $db_name" >> mysql.log 2>&1
-echo "host =       $host" >> mysql.log 2>&1
+echo "----------------------------------------" | tee -a mysql.log
+echo "Starting ... `/bin/date`" | tee -a mysql.log
+echo "----------------------------------------" | tee -a mysql.log
+echo "user =       $user" | tee -a mysql.log
+echo "db_name =    $db_name" | tee -a mysql.log
+echo "host =       $host" | tee -a mysql.log
 
 if [ "${password}" != "" ]; then
   password="-p${password}"
@@ -30,31 +27,54 @@ if [ "${host}" != "" ]; then
   host="-h ${host}"
 fi
 
-echo "    Create and load tables ... `/bin/date`" >> mysql.log 2>&1
-mysql -vvv $host -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1
-if [ $? -ne 0 ]; then ef=1; fi
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+echo "    Compute transitive closure relationship file ... `/bin/date`" | tee -a mysql.log
+relFile=$(find $DIR/Snapshot/Terminology/ -name "*_Relationship_Snapshot_*.txt" -print -quit)
+#check if system has python or perl, run the corresponding script
+if command -v python &> /dev/null
+then
+  echo "python found, running python script" >> mysql.log 2>&1
+  python $DIR/compute_transitive_closure.py --force --noself $relFile >> mysql.log 2>&1
+  if [ $? -ne 0 ]; then ef=1; fi
+elif command -v perl &> /dev/null
+then
+  echo "perl found, running perl script" >> mysql.log 2>&1
+  perl $DIR/compute_transitive_closure.pl --force --noself $relFile >> mysql.log 2>&1
+  if [ $? -ne 0 ]; then ef=1; fi
+# if none are present, print error message
+else
+  echo "No python or perl found. Please install one of them." | tee -a mysql.log
+  ef=1
+fi
 
 if [ $ef -ne 1 ]; then
-echo "    Create indexes ... `/bin/date`" >> mysql.log 2>&1
+echo "    Create and load tables ... `/bin/date`" | tee -a mysql.log
+mysql -vvv $host -u $user $password --local-infile $db_name < mysql_tables.sql >> mysql.log 2>&1
+if [ $? -ne 0 ]; then ef=1; fi
+fi
+
+if [ $ef -ne 1 ]; then
+echo "    Create indexes ... `/bin/date`" | tee -a mysql.log
 mysql -vvv $host -u $user $password --local-infile $db_name < mysql_indexes.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
 if [ $ef -ne 1 ]; then
-echo "    Create views ... `/bin/date`" >> mysql.log 2>&1
+echo "    Create views ... `/bin/date`" | tee -a mysql.log
 mysql -vvv $host -u $user $password --local-infile $db_name < mysql_views.sql >> mysql.log 2>&1
 if [ $? -ne 0 ]; then ef=1; fi
 fi
 
-echo "----------------------------------------" >> mysql.log 2>&1
+echo "----------------------------------------" | tee -a mysql.log
 if [ $ef -eq 1 ]
 then
-  echo "There were one or more errors." >> mysql.log 2>&1
+  echo "There were one or more errors." | tee -a mysql.log
   retval=-1
 else
-  echo "Completed without errors." >> mysql.log 2>&1
+  echo "Completed without errors." | tee - a mysql.log
   retval=0
 fi
-echo "Finished ... `/bin/date`" >> mysql.log 2>&1
-echo "----------------------------------------" >> mysql.log 2>&1
+echo "Finished ... `/bin/date`" | tee -a mysql.log
+echo "----------------------------------------" | tee -a mysql.log
 exit $retval
