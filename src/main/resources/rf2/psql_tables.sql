@@ -151,7 +151,7 @@ CREATE TABLE textdefinition (
     FOREIGN KEY (moduleId) REFERENCES concept(id),
     FOREIGN KEY (conceptId) REFERENCES concept(id),
     FOREIGN KEY (typeId) REFERENCES concept(id),
-    FOREIGN KEY (caseSignificanceId) REFERENCES concept(id) 
+    FOREIGN KEY (caseSignificanceId) REFERENCES concept(id)
 );
 
 \copy textdefinition FROM 'Snapshot/Terminology/sct2_TextDefinition_Snapshot-en_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
@@ -447,3 +447,16 @@ CREATE TABLE moduledependency (
 );
 
 \copy moduledependency FROM 'Snapshot/Refset/Metadata/der2_ssRefset_ModuleDependencySnapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
+
+-- Transitive closure table.
+DROP TABLE IF EXISTS transitiveclosure CASCADE;
+CREATE TABLE transitiveclosure (
+    superTypeId NUMERIC(20) NOT NULL,
+    subTypeId NUMERIC(20) NOT NULL,
+    depth INT NOT NULL,
+    PRIMARY KEY (superTypeId, subTypeId),
+    FOREIGN KEY (superTypeId) REFERENCES concept(id),
+    FOREIGN KEY (subTypeId) REFERENCES concept(id)
+);
+
+\copy transitiveclosure FROM 'Snapshot/Terminology/sct2_TransitiveClosure_Snapshot_${editionLabel}_${editionVersion}.txt' WITH DELIMITER E'\t' QUOTE E'\\' ENCODING 'UTF8' CSV HEADER;
