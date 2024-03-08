@@ -40,7 +40,7 @@ This utility is freely available through our website:
 
 * Information and download: https://www.westcoastinformatics.com/products/db-load-scripts
   - See the "DB Load Scripts" section
-  - See the "Transitive Closure Scripts" section
+  - These scripts have been updated to automatically compute a transitive closure table and load it also
 
 * Github projects:
   - https://github.com/WestCoastInformatics/SNOMED-DB-Load-Scripts
