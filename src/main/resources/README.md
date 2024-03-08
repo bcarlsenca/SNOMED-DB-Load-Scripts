@@ -16,5 +16,9 @@ Go to the above link for documentation, and additional downloads.
 * Builds transitive closure table from RF2 snapshot, inferred, SNOMEDCT file.
 * Views with denormalized concept preferred names
 
+## Watch the Demo Video
+
+See [https://youtu.be/917T6D3b5ro](https://youtu.be/917T6D3b5ro)
+
 ### Developer Notes
 https://github.com/WestCoastInformatics/SNOMED-DB-Load-Scripts

@@ -18,13 +18,6 @@ Minimum Specification
 - Oracle v12.+
 - Postgres v13.+, v14.+, v15.+, v16.+
 
-Prerequisites
--------------
-If loading transitive closure table into a database, first load SNOMED in RF2
-using the database load scripts you can also find at the URL above.  This is
-important because it creates a view that allows for denormalization of preferred
-concept names, thus making the transitive closure table more useful.
-
 Installation
 ------------
 * See [HOWTO.md](src/main/resources/HOWTO.md) file to understand how to load the rf2 files into the database
