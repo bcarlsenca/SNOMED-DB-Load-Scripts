@@ -42,9 +42,8 @@ This utility is freely available through our website:
   - See the "DB Load Scripts" section
   - These scripts have been updated to automatically compute a transitive closure table and load it also
 
-* Github projects:
+* Github project:
   - https://github.com/WestCoastInformatics/SNOMED-DB-Load-Scripts
-  - https://github.com/WestCoastInformatics/SNOMED-CT-Transitive-Closure
 
 * Updated Training video:
   - https://youtu.be/917T6D3b5ro
