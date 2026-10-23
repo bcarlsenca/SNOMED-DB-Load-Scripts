@@ -1,0 +1,75 @@
+# How To Use the SNOMED CT Database Loader
+This HOWTO describes how to use the installer scripts to load SNOMEDCT into a database.
+
+## Watch the Demo Video
+
+See [https://youtu.be/917T6D3b5ro](https://youtu.be/917T6D3b5ro)
+
+## Installation
+1.  Download the database loader zip file from the https://www.westcoastinformatics.com/products/db-load-scripts website. Select the appropriate database-version pair (i.e. oracle-US Edition). Depending on your database and edition, identify the appropriate target's zip file.
+
+2.  Unzip the contents of the zip file into a 'data' folder
+
+3.  Download the SNOMED CT Release files in ZIP format. US Users can find the files here: 
+	* [SNOMED CT® US Edition Release Files](https://www.nlm.nih.gov/healthit/snomedct/us_edition.html)
+    * [SNOMED CT® International Edition Release Files](https://www.nlm.nih.gov/healthit/snomedct/international.html)
+
+4.  Open the desired zip file and extract the 'Snapshot' folder into the 'data/rf2' folder. Once completed:
+	* The 'data' folder's content will include:
+		- 'rf2' folder
+		- HOWTO.md
+		- LICENSE.txt
+		- README.md
+	* The 'data/rf2' folder's contents will include:
+		- 'Snapshot' folder
+		- *.sql files
+		- *.ctl files (for oracle only)
+		- one *.sh file
+
+5.	In a text editor, open the temp-folder's appropriate "populate" script as defined by your database. 
+   * For example:
+       - For MySQL (or MariaDB < 11), use the "populate_mysql_db.sh" script
+       - For MariaDB 11+, use the "populate_maria_db.sh" script
+       - For Postgres, use the "populate_postgres_db.sh" script
+       - For Oracle, use the "populate_oracle_db.sh" script
+   * Configure settings at the top of the "populate" script for your environment
+       - use your host's IP address or hostname
+       - user is your database's username
+       - password is your database's password
+       - tns_name or db_name is the database's schema which is to be populated
+
+6.  Create the database schema as defined in step #5
+
+    * NOTE: postgres supports only db-level character encoding, so make sure to create your database using: `WITH ENCODING 'UTF-8'`
+
+
+7.	Execute the "populate" script
+	* Note: a complete log file will appear as `mysql.log`, `mariadb.log`, `postgres.log`, or `oracle.log`
+
+## Oracle: VARCHAR2 vs CLOB for description and text definition (4096 characters)
+
+SNOMED CT allows description and text definition terms up to 4096 characters. Oracle's default `VARCHAR2` limit is 4000 characters, so this package uses **CLOB** for:
+
+- `description.term`
+- `textdefinition.term`
+
+**Writing queries**
+
+- **Simple SELECT:** Use the column as usual. Oracle converts CLOB to character data for display.
+  ```sql
+  SELECT term FROM description WHERE id = 12345;
+  SELECT term FROM textdefinitionwithnames WHERE conceptId = 12345;
+  ```
+
+- **GROUP BY, ORDER BY, or DISTINCT** on these columns: Use `DBMS_LOB.SUBSTR` so Oracle can compare/sort. Use the same expression in both SELECT and GROUP BY when grouping by the term.
+  ```sql
+  SELECT DBMS_LOB.SUBSTR(term, 4000, 1) AS term, COUNT(*)
+  FROM description
+  WHERE active = 1
+  GROUP BY DBMS_LOB.SUBSTR(term, 4000, 1);
+  ```
+
+- **Views:** Views that expose these columns (e.g. `descriptionwithnames`, `textdefinitionwithnames`, `conceptwithnames` / preferred name) return CLOB. Same rules: simple SELECT is fine; for GROUP BY/ORDER BY on the term column, wrap in `DBMS_LOB.SUBSTR(column, 4000, 1)`.
+
+**Why CLOB and not VARCHAR2(4096)?**  
+`VARCHAR2(4096)` requires Oracle's `MAX_STRING_SIZE=EXTENDED`, which is not default and is not assumed for this package. Using CLOB works on all supported Oracle versions without that setting.
